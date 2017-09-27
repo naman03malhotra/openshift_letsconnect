@@ -1,0 +1,17 @@
+RewriteEngine on
+
+RewriteRule    ^hub/([A-Za-z0-9-]+)/?$    hub.php?c=$1    [NC,L] 
+RewriteRule    ^counsellor/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$    counsellor.php?cn=$1&sub=$2    [NC,L] 
+RewriteRule    ^mentor/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$    mentor.php?cn=$1&sub=$2    [NC,L] 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+
+
+
+
+RewriteEngine On
+RewriteRule ^c/.*$ c/index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^c/(.*)$ c [QSA,L]

@@ -1,0 +1,362 @@
+
+body {
+  font-family: 'Raleway', sans-serif;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+/*
+css for scroll bar
+*/
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #0c84e4;
+  border-radius:3px;
+}
+
+body::-webkit-scrollbar-thumb:hover{
+  background-color:#0c84e4;
+  border:1px solid #2192a7;
+}
+body::-webkit-scrollbar-thumb:active{
+  background-color:#1a7d90;
+  border:1px solid #155965;
+} 
+
+/*
+Css for twitter card
+*/
+
+.user-name {
+  font-size: 18px;
+}
+.card-footer {
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.12); 
+}
+.card-image{
+ text-align: center;
+}
+.card-content {
+ padding: 15px;
+}
+.card-body {
+  min-height: 88px;
+}
+.card {
+  border: 0;
+  margin: 10px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.07),0 1px 1px -2px rgba(0,0,0,.02),0 1px 5px 0 rgba(0,0,0,.02);
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  min-height: 300px;
+}
+.card:hover {	
+  border: 0;
+  box-shadow: 0 11px 16px 0 rgba(23,84,111,0.18);
+}
+
+.card-footer-btn{
+  margin-top: 8px;
+}
+
+
+/*
+nprogress - css
+*/
+
+#nprogress .bar {
+  background: #2196f3;
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+}
+
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+  -webkit-animation: nprogress-spinner 150ms linear infinite;
+  animation: nprogress-spinner 150ms linear infinite;
+}
+
+/*
+Mix Css
+*/
+
+.navbar {
+
+  margin-bottom: 0px !important;
+}
+
+.btn {
+  outline: none;
+}
+
+
+h6 {
+  color:#959595;
+}
+
+.progress {
+ margin-bottom: 0px !important;
+}
+.progress-text {
+  margin-top: 6px !important;
+}
+
+
+/*
+
+m-progress 
+
+*/
+
+
+@-webkit-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@-moz-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@-o-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.m-progress {
+  position: relative;
+  opacity: .8;
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
+.m-progress:hover,
+.m-progress:active,
+.m-progress:focus {
+  cursor: default;
+  color: transparent;
+  outline: none !important;
+  box-shadow: none;
+}
+
+.m-progress:before {
+  content: '';
+
+  display: inline-block;
+
+  position: absolute;
+  background: transparent;
+  border: 1px solid #fff;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+
+  box-sizing: border-box;
+
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+
+  width: 24px;
+  height: 24px;
+
+  -webkit-animation: ld 1s ease-in-out infinite;
+  -moz-animation:    ld 1s ease-in-out infinite;
+  -o-animation:      ld 1s ease-in-out infinite;
+  animation:         ld 1s ease-in-out infinite;
+}
+
+.btn-default.m-progress:before {
+  border-left-color: #333333;
+  border-right-color: #333333;
+}
+
+.btn-lg.m-progress:before {
+  margin-top: -16px;
+  margin-left: -16px;
+
+  width: 32px;
+  height: 32px;
+}
+
+.btn-sm.m-progress:before {
+  margin-top: -9px;
+  margin-left: -9px;
+
+  width: 18px;
+  height: 18px;
+}
+
+.btn-xs.m-progress:before {
+  margin-top: -7px;
+  margin-left: -7px;
+
+  width: 14px;
+  height: 14px;
+}
+
+
+
+
+
+
+  .nav-tabs>li {
+
+    padding: 5%;
+  }
+
+  .panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'FontAwesome';
+    content: "\f078";    
+    float: left;
+  }
+  .panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f054";       /* adjust as needed, taken from bootstrap.css */
+  }
+
+
+  .funkyradio div {
+    clear: both;
+    overflow: hidden;
+  }
+
+  .funkyradio label {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #D1D3D4;
+    font-weight: normal;
+  }
+
+  .funkyradio input[type="radio"]:empty,
+  .funkyradio input[type="checkbox"]:empty {
+    display: none;
+  }
+
+  .funkyradio input[type="radio"]:empty ~ label,
+  .funkyradio input[type="checkbox"]:empty ~ label {
+    position: relative;
+    line-height: 2.5em;
+    text-indent: 3.25em;
+    margin-top: 0em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .funkyradio input[type="radio"]:empty ~ label:before,
+  .funkyradio input[type="checkbox"]:empty ~ label:before {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 2.5em;
+    background: #D1D3D4;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+  .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+    color: #888;
+  }
+
+  .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+  .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+    content: '\2714';
+    text-indent: .9em;
+    color: #C2C2C2;
+  }
+
+  .funkyradio input[type="radio"]:checked ~ label,
+  .funkyradio input[type="checkbox"]:checked ~ label {
+    color: #777;
+  }
+
+  .funkyradio input[type="radio"]:checked ~ label:before,
+  .funkyradio input[type="checkbox"]:checked ~ label:before {
+    content: '\2714';
+    text-indent: .9em;
+    color: #333;
+    background-color: #ccc;
+  }
+
+  .funkyradio input[type="radio"]:focus ~ label:before,
+  .funkyradio input[type="checkbox"]:focus ~ label:before {
+    box-shadow: 0 0 0 3px #999;
+  }
+
+  .funkyradio-default input[type="radio"]:checked ~ label:before,
+  .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+    color: #333;
+    background-color: #ccc;
+  }
+
+  .funkyradio-primary input[type="radio"]:checked ~ label:before,
+  .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #337ab7;
+  }
+
+  .funkyradio-success input[type="radio"]:checked ~ label:before,
+  .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #5cb85c;
+  }
+
+  .funkyradio-danger input[type="radio"]:checked ~ label:before,
+  .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #d9534f;
+  }
+
+  .funkyradio-warning input[type="radio"]:checked ~ label:before,
+  .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #f0ad4e;
+  }
+
+  .funkyradio-info input[type="radio"]:checked ~ label:before,
+  .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+    color: #fff;
+    background-color: #5bc0de;
+  }
+
+  .panel-title>a, .panel-title>small, .panel-title>.small, .panel-title>small>a, .panel-title>.small>a {
+    
+    font-size: calc(.45vw + .4vh);
+    margin-left: 3px;
+  }
+
