@@ -4,7 +4,7 @@
  * Front controller for setup script
  *
  * @package PhpMyAdmin-Setup
- * @license https://www.gnu.org/licenses/gpl.html GNU GPL 2.0
+ * @license http://www.gnu.org/licenses/gpl.html GNU GPL 2.0
  */
 
 /**
@@ -12,7 +12,7 @@
  */
 require './lib/common.inc.php';
 
-if (@file_exists(CONFIG_FILE) && ! $cfg['DBG']['demo']) {
+if (file_exists(CONFIG_FILE)) {
     PMA_fatalError(__('Configuration already exists, setup is disabled!'));
 }
 
@@ -21,7 +21,7 @@ $page = preg_replace('/[^a-z]/', '', $page);
 if ($page === '') {
     $page = 'index';
 }
-if (!@file_exists("./setup/frames/$page.inc.php")) {
+if (!file_exists("./setup/frames/$page.inc.php")) {
     // it will happen only when entering URL by hand, we don't care for these cases
     PMA_fatalError(__('Wrong GET file attribute value'));
 }
@@ -41,13 +41,12 @@ PMA_noCacheHeader();
 <link href="../favicon.ico" rel="icon" type="image/x-icon" />
 <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <link href="styles.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="../js/jquery/jquery-ui.min.js">
-</script>
+<script type="text/javascript" src="../js/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/jquery/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery/jquery.json-2.4.js"></script>
 <script type="text/javascript" src="ajax.js"></script>
 <script type="text/javascript" src="../js/config.js"></script>
 <script type="text/javascript" src="scripts.js"></script>
-<script type="text/javascript" src="../js/messages.php"></script>
 </head>
 <body>
 <h1><span class="blue">php</span><span class="orange">MyAdmin</span>  setup</h1>

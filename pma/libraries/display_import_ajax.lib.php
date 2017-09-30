@@ -5,57 +5,49 @@
 *
 * @package PhpMyAdmin
 */
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
 /**
- * Sets up some variables for upload progress
- *
- * @return array
- *
- */
-function PMA_uploadProgressSetup()
-{
-    /**
-     * constant for differentiating array in $_SESSION variable
-     */
-    $SESSION_KEY = '__upload_status';
+  * constant for differenciating array in $_SESSION variable
+  */
+$SESSION_KEY = '__upload_status';
 
-    /**
-     * sets default plugin for handling the import process
-     */
-    $_SESSION[$SESSION_KEY]["handler"] = "";
+/**
+  * sets default plugin for handling the import process
+  */
+$_SESSION[$SESSION_KEY]["handler"] = "";
 
-    /**
-     * unique ID for each upload
-     */
-    $upload_id = uniqid("");
+/**
+  * unique ID for each upload
+  */
+$upload_id = uniqid("");
 
-    /**
-     * list of available plugins
-     *
-     * Each plugin has own checkfunction in display_import_ajax.lib.php
-     * and own file with functions in upload_#KEY#.php
-     */
-    $plugins = array(
-        // PHP 5.4 session-based upload progress is problematic, see bug 3964
-        //"session",
-        "progress",
-        "apc",
-        "noplugin"
-    );
+/**
+  * list of available plugins
+  *
+  * Each plugin has own checkfunction in display_import_ajax.lib.php
+  * and own file with functions in upload_#KEY#.php
+  */
+$plugins = array(
+   // PHP 5.4 session-based upload progress is problematic, see bug 3964
+   //"session",
+   "progress",
+   "apc",
+   "noplugin"
+);
 
-    // select available plugin
-    foreach ($plugins as $plugin) {
-        $check = "PMA_Import_" . $plugin . "Check";
+// select available plugin
+foreach ($plugins as $plugin) {
+    $check = "PMA_import_" . $plugin . "Check";
 
-        if ($check()) {
-            $upload_class = 'PMA\libraries\plugins\import\upload\Upload' . ucwords(
-                $plugin
-            );
-            $_SESSION[$SESSION_KEY]["handler"] = $upload_class;
-            break;
-        }
+    if ($check()) {
+        $upload_class = "Upload" . ucwords($plugin);
+        $_SESSION[$SESSION_KEY]["handler"] = $upload_class;
+        include_once "plugins/import/upload/" . $upload_class . ".class.php";
+        break;
     }
-    return array($SESSION_KEY, $upload_id, $plugins);
 }
 
 /**
@@ -64,7 +56,7 @@ function PMA_uploadProgressSetup()
   * @return boolean true if APC extension is available and if rfc1867 is enabled,
   *                      false if it is not
   */
-function PMA_Import_apcCheck()
+function PMA_import_apcCheck()
 {
     if (! extension_loaded('apc')
         || ! function_exists('apc_fetch')
@@ -76,13 +68,12 @@ function PMA_Import_apcCheck()
 }
 
 /**
- * Checks if PMA\libraries\plugins\import\upload\UploadProgress bar extension is
- * available.
- *
- * @return boolean true if PMA\libraries\plugins\import\upload\UploadProgress
- * extension is available, false if it is not
- */
-function PMA_Import_progressCheck()
+  * Checks if UploadProgress bar extension is available.
+  *
+  * @return boolean true if UploadProgress extension is available,
+  *                 false if it is not
+  */
+function PMA_import_progressCheck()
 {
     if (! function_exists("uploadprogress_get_info")
         || ! function_exists('getallheaders')
@@ -98,9 +89,11 @@ function PMA_Import_progressCheck()
   * @return boolean true if PHP 5.4 session upload-progress is available,
   *                 false if it is not
   */
-function PMA_Import_sessionCheck()
+function PMA_import_sessionCheck()
 {
-    if (! ini_get('session.upload_progress.enabled')) {
+    if (PMA_PHP_INT_VERSION < 50400
+        || ! ini_get('session.upload_progress.enabled')
+    ) {
         return false;
     }
     return true;
@@ -112,7 +105,7 @@ function PMA_Import_sessionCheck()
   *
   * @return boolean true
   */
-function PMA_Import_nopluginCheck()
+function PMA_import_nopluginCheck()
 {
     return true;
 }
@@ -128,8 +121,12 @@ function PMA_Import_nopluginCheck()
   */
 function PMA_importAjaxStatus($id)
 {
-    PMA_headerJSON();
+    header('Content-type: application/json');
     echo json_encode(
-        $_SESSION[$GLOBALS['SESSION_KEY']]['handler']::getUploadStatus($id)
+        call_user_func(
+            $_SESSION[$GLOBALS['SESSION_KEY']]['handler'] . '::getUploadStatus',
+            $id
+        )
     );
 }
+?>

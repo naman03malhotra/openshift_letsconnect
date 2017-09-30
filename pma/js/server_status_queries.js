@@ -5,23 +5,23 @@
 /**
  * Unbind all event handlers before tearing down a page
  */
-AJAX.registerTeardown('server_status_queries.js', function () {
+AJAX.registerTeardown('server_status_queries.js', function() {
     var queryPieChart = $('#serverstatusquerieschart').data('queryPieChart');
     if (queryPieChart) {
         queryPieChart.destroy();
     }
 });
 
-AJAX.registerOnload('server_status_queries.js', function () {
+AJAX.registerOnload('server_status_queries.js', function() {
     // Build query statistics chart
     var cdata = [];
     try {
-        $.each($('#serverstatusquerieschart').data('chart'), function (key, value) {
-            cdata.push([key, parseInt(value, 10)]);
+        $.each(jQuery.parseJSON($('#serverstatusquerieschart_data').text()), function(key, value) {
+            cdata.push([key, parseInt(value)]);
         });
         $('#serverstatusquerieschart').data(
             'queryPieChart',
-            PMA_createProfilingChart(
+            PMA_createProfilingChartJqplot(
                 'serverstatusquerieschart',
                 cdata
             )
@@ -30,5 +30,11 @@ AJAX.registerOnload('server_status_queries.js', function () {
         // Could not load chart, no big deal...
     }
 
+    /*** Table sort tooltip ***/
+    PMA_tooltip(
+        $('table.sortable>thead>tr:first').find('th'),
+        'th',
+        PMA_messages['strSortHint']
+    );
     initTableSorter('statustabs_queries');
 });

@@ -2,7 +2,7 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * File for vendor customisation, you can change here paths or some behaviour,
- * which vendors such as Linux distributions might want to change.
+ * which vendors such as Linux distibutions might want to change.
  *
  * For changing this file you should know what you are doing. For this reason
  * options here are not part of normal configuration.
@@ -26,16 +26,11 @@ define('CHANGELOG_FILE', './ChangeLog');
 define('LICENSE_FILE', './LICENSE');
 
 /**
- * Directory where SQL scripts to create/upgrade configuration storage reside.
- */
-define('SQL_DIR', './sql/');
-
-/**
  * Directory where configuration files are stored.
  * It is not used directly in code, just a convenient
  * define used further in this file.
  */
-define('CONFIG_DIR', '');
+define('CONFIG_DIR', './');
 
 /**
  * Filename of a configuration file.
@@ -58,12 +53,13 @@ define('CUSTOM_FOOTER_FILE', CONFIG_DIR . 'config.footer.inc.php');
 define('VERSION_CHECK_DEFAULT', true);
 
 /**
- * Path to files with compiled locales (*.mo)
+ * Path to gettext.inc file. Useful when you want php-gettext somewhere else,
+ * eg. /usr/share/php/gettext/gettext.inc.
  */
-define('LOCALE_PATH', './locale/');
-
+define('GETTEXT_INC', './libraries/php-gettext/gettext.inc');
 /**
- * Avoid referring to nonexistent files (causes warnings when open_basedir
- * is used)
+ * Path to tcpdf.php file. Useful when you want to use system tcpdf,
+ * eg. /usr/share/php/tcpdf/tcpdf.php.
  */
-define('K_PATH_IMAGES', '');
+define('TCPDF_INC', './libraries/tcpdf/tcpdf.php');
+?>

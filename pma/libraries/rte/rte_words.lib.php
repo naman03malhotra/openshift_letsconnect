@@ -1,17 +1,12 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
-/**
- * Helper functions for RTE
- *
- * @package PhpMyAdmin
- */
 if (! defined('PHPMYADMIN')) {
     exit;
 }
 
 /**
- * This function is used to retrieve some language strings that are used
- * in features that are common to routines, triggers and events.
+ * This function is used to retreive some language strings that are used
+ * in functionalities that are common to routines, triggers and events.
  *
  * @param string $index The index of the string to get
  *
@@ -28,18 +23,8 @@ function PMA_RTE_getWord($index)
             'docu'      => 'STORED_ROUTINES',
             'export'    => __('Export of routine %s'),
             'human'     => __('routine'),
-            'no_create' => __(
-                'You do not have the necessary privileges to create a routine.'
-            ),
-            'no_edit'   => __(
-                'No routine with name %1$s found in database %2$s. '
-                . 'You might be lacking the necessary privileges to edit this routine.'
-            ),
-            'no_view'   => __(
-                'No routine with name %1$s found in database %2$s. '
-                . 'You might be lacking the necessary privileges to view/export this routine.'
-            ),
-            'not_found' => __('No routine with name %1$s found in database %2$s.'),
+            'no_create' => __('You do not have the necessary privileges to create a routine'),
+            'not_found' => __('No routine with name %1$s found in database %2$s'),
             'nothing'   => __('There are no routines to display.'),
             'title'     => __('Routines'),
         );
@@ -50,10 +35,8 @@ function PMA_RTE_getWord($index)
             'docu'      => 'TRIGGERS',
             'export'    => __('Export of trigger %s'),
             'human'     => __('trigger'),
-            'no_create' => __(
-                'You do not have the necessary privileges to create a trigger.'
-            ),
-            'not_found' => __('No trigger with name %1$s found in database %2$s.'),
+            'no_create' => __('You do not have the necessary privileges to create a trigger'),
+            'not_found' => __('No trigger with name %1$s found in database %2$s'),
             'nothing'   => __('There are no triggers to display.'),
             'title'     => __('Triggers'),
         );
@@ -64,10 +47,8 @@ function PMA_RTE_getWord($index)
             'docu'      => 'EVENTS',
             'export'    => __('Export of event %s'),
             'human'     => __('event'),
-            'no_create' => __(
-                'You do not have the necessary privileges to create an event.'
-            ),
-            'not_found' => __('No event with name %1$s found in database %2$s.'),
+            'no_create' => __('You do not have the necessary privileges to create an event'),
+            'not_found' => __('No event with name %1$s found in database %2$s'),
             'nothing'   => __('There are no events to display.'),
             'title'     => __('Events'),
         );
@@ -80,3 +61,4 @@ function PMA_RTE_getWord($index)
     return isset($words[$index]) ? $words[$index] : '';
 } // end PMA_RTE_getWord()
 
+?>

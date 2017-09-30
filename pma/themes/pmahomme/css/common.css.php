@@ -27,14 +27,14 @@ textarea {
 
 
 body {
-<?php if (! empty($GLOBALS['cfg']['FontFamily'])) : ?>
+<?php if (! empty($GLOBALS['cfg']['FontFamily'])) { ?>
     font-family: <?php echo $GLOBALS['cfg']['FontFamily']; ?>;
-<?php endif; ?>
+<?php } ?>
     padding: 0;
     margin: 0;
     margin-<?php echo $left; ?>: 240px;
-    color: <?php echo $GLOBALS['cfg']['MainColor']; ?>;
-    background: <?php echo $GLOBALS['cfg']['MainBackground']; ?>;
+    color: #444;
+    background: #fff;
 }
 
 body#loginform {
@@ -45,14 +45,14 @@ body#loginform {
     margin: 0 .5em;
 }
 
-<?php if (! empty($GLOBALS['cfg']['FontFamilyFixed'])) : ?>
-    textarea,
-    tt,
-    pre,
-    code {
+<?php if (! empty($GLOBALS['cfg']['FontFamilyFixed'])) { ?>
+textarea,
+tt,
+pre,
+code {
     font-family: <?php echo $GLOBALS['cfg']['FontFamilyFixed']; ?>;
-    }
-<?php endif; ?>
+}
+<?php } ?>
 
 
 h1 {
@@ -87,6 +87,10 @@ h2 a img {
     width: 100%;
 }
 
+#table_results td.data {
+border-right: 1px solid #bbb;
+}
+
 h3 {
     font-weight: bold;
 }
@@ -94,9 +98,7 @@ h3 {
 a,
 a:link,
 a:visited,
-a:active,
-button.mult_submit,
-.checkall_box+label {
+a:active {
     text-decoration: none;
     color: #235a81;
     cursor: pointer;
@@ -104,10 +106,7 @@ button.mult_submit,
 
 }
 
-a:hover,
-button.mult_submit:hover,
-button.mult_submit:focus,
-.checkall_box+label:hover {
+a:hover {
     text-decoration: underline;
     color: #235a81;
 }
@@ -132,13 +131,7 @@ button.mult_submit:focus,
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'e0e0e0'); ?>
-}
-
-#initials_table a.active {
-    border: 1px solid #666;
-    box-shadow: 0 0 2px #999;
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('bbbbbb', 'ffffff'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
 }
 
 dfn {
@@ -174,103 +167,51 @@ form {
     display: inline;
 }
 
-
-input,
-select {
-    /* Fix outline in Chrome: */
-    outline: none;
-}
-
-input[type=text],
-input[type=password],
-input[type=number],
-input[type=date] {
+input[type=text] {
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
 
+    box-shadow: 0 1px 2px #ddd;
+    -moz-box-shadow: 0 1px 2px #ddd;
+    -webkit-box-shadow: 0 1px 2px #ddd;
 
     background: white;
     border: 1px solid #aaa;
     color: #555;
     padding: 4px;
-}
-
-input[type=text],
-input[type=password],
-input[type=number],
-input[type=date],
-input[type=checkbox],
-select {
     margin: 6px;
+
 }
 
-input[type=number] {
-    width: 50px;
-}
+input[type=password] {
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
 
-input[type=text],
-input[type=password],
-input[type=number],
-input[type=date],
-select {
-    transition: all 0.2s;
-    -ms-transition: all 0.2s;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-}
+    box-shadow: 0 1px 2px #ddd;
+    -moz-box-shadow: 0 1px 2px #ddd;
+    -webkit-box-shadow: 0 1px 2px #ddd;
 
-input[type=text][disabled],
-input[type=text][disabled]:hover,
-input[type=password][disabled],
-input[type=password][disabled]:hover,
-input[type=number][disabled],
-input[type=number][disabled]:hover,
-input[type=date][disabled],
-input[type=date][disabled]:hover,
-select[disabled],
-select[disabled]:hover {
-    background: #e8e8e8;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-}
+    background: white;
+    border: 1px solid #aaa;
+    color: #555;
+    padding: 4px;
+    margin: 6px;
 
-input[type=text]:hover,
-input[type=text]:focus,
-input[type=password]:hover,
-input[type=password]:focus,
-input[type=number]:hover,
-input[type=number]:focus,
-input[type=date]:hover,
-input[type=date]:focus,
-select:focus {
-    border: 1px solid #7c7c7c;
-    background: #fff;
-}
-
-input[type=text]:hover,
-input[type=password]:hover,
-input[type=number]:hover,
-input[type=date]:hover {
-    box-shadow: 0 1px 3px #aaa;
-    -webkit-box-shadow: 0 1px 3px #aaa;
-    -moz-box-shadow: 0 1px 3px #aaa;
 }
 
 input[type=submit],
-input[type=button],
 button[type=submit]:not(.mult_submit) {
     font-weight: bold !important;
 }
 
 input[type=submit],
-input[type=button],
 button[type=submit]:not(.mult_submit),
 input[type=reset],
 input[name=submit_reset],
 input.button {
-    margin: 6px 14px;
+    margin-left: 14px;
     border: 1px solid #aaa;
     padding: 3px 7px;
     color: #111;
@@ -283,53 +224,39 @@ input.button {
 
     text-shadow: 0 1px 0 #fff;
 
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('f8f8f8', 'd8d8d8'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
 }
 
 input[type=submit]:hover,
-input[type=button]:hover,
 button[type=submit]:not(.mult_submit):hover,
 input[type=reset]:hover,
 input[name=submit_reset]:hover,
 input.button:hover {
     position: relative;
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('fff', 'ddd'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('cccccc', 'dddddd'); ?>
     cursor: pointer;
 }
 
 input[type=submit]:active,
-input[type=button]:active,
 button[type=submit]:not(.mult_submit):active,
 input[type=reset]:active,
 input[name=submit_reset]:active,
 input.button:active {
     position: relative;
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('eee', 'ddd'); ?>
-    box-shadow: 0 1px 6px -2px #333 inset;
-    text-shadow: none;
-}
-
-input[type=submit]:disabled,
-input[type=button]:disabled,
-button[type=submit]:not(.mult_submit):disabled,
-input[type=reset]:disabled,
-input[name=submit_reset]:disabled,
-input.button:disabled {
-    background: #ccc;
-    color: #666;
-    text-shadow: none;
+    top: 1px;
+    left: 1px;
 }
 
 textarea {
     overflow: visible;
-    margin: 6px;
+    height: <?php echo ceil($GLOBALS['cfg']['TextareaRows'] * 1.2); ?>em;
 }
 
 textarea.char {
-    margin: 6px;
+    height: <?php echo ceil($GLOBALS['cfg']['CharTextareaRows'] * 1.2); ?>em;
 }
 
-fieldset, .preview_sql {
+fieldset {
     margin-top: 1em;
     border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
@@ -363,7 +290,6 @@ fieldset legend {
     -moz-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>3px 3px 15px #bbb;
     -webkit-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>3px 3px 15px #bbb;
     box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>3px 3px 15px #bbb;
-    max-width: 100%;
 }
 
 .some-margin {
@@ -379,9 +305,9 @@ button {
 table caption,
 table th,
 table td {
-    padding: .1em .3em;
+    padding: .3em;
     margin: .1em;
-    vertical-align: middle;
+    vertical-align: top;
     text-shadow: 0 1px 0 #fff;
 }
 
@@ -390,11 +316,8 @@ table {
     border-collapse: collapse;
 }
 
-thead th {
-    border-right: 1px solid #fff;
-}
-
 th {
+    border-right: 1px solid #fff;
     text-align: left;
 }
 
@@ -415,11 +338,14 @@ select {
     -webkit-border-radius: 2px;
     border-radius: 2px;
 
-    border: 1px solid #bbb;
+    -moz-box-shadow: 0 1px 2px #ddd;
+    -webkit-box-shadow: 0 1px 2px #ddd;
+    box-shadow: 0 1px 2px #ddd;
+
+    border: 1px solid #aaa;
     color: #333;
     padding: 3px;
     background: white;
-    margin:6px;
 }
 
 select[multiple] {
@@ -445,10 +371,6 @@ select[multiple] {
     text-align: center;
 }
 
-.displayblock {
-    display: block;
-}
-
 table.nospacing {
     border-spacing: 0;
 }
@@ -467,7 +389,6 @@ th.center, td.center {
 
 th.right, td.right {
     text-align: right;
-    padding-right: 1em;
 }
 
 tr.vtop th, tr.vtop td, th.vtop, td.vtop {
@@ -539,44 +460,56 @@ button.mult_submit {
 }
 
 /* odd items 1,3,5,7,... */
-table tbody:first-of-type tr:nth-child(odd),
-table tbody:first-of-type tr:nth-child(odd) th {
+table tr.odd th,
+.odd {
     background: #fff;
+    <?php echo $_SESSION['PMA_Theme']->getCssIEClearFilter(); ?>
 }
 
 /* even items 2,4,6,8,... */
-table tbody:first-of-type tr:nth-child(even),
-table tbody:first-of-type tr:nth-child(even) th {
+/* (tested on CRTs and ACLs) */
+table tr.even th,
+.even {
     background: #DFDFDF;
+    <?php echo $_SESSION['PMA_Theme']->getCssIEClearFilter(); ?>
 }
 
-table tr th,
-table tr {
+/* odd table rows 1,3,5,7,... */
+table tr.odd th,
+table tr.odd,
+table tr.even th,
+table tr.even {
     text-align: <?php echo $left; ?>;
 }
 
+<?php if ($GLOBALS['cfg']['BrowseMarkerEnable']) { ?>
 /* marked table rows */
-td.marked:not(.nomarker),
-table tr.marked:not(.nomarker) td,
-table tbody:first-of-type tr.marked:not(.nomarker) th,
-table tr.marked:not(.nomarker) {
+td.marked,
+table tr.marked td,
+table tr.marked th,
+table tr.marked {
     <?php echo $_SESSION['PMA_Theme']->getCssGradient('ced6df', 'b6c6d7'); ?>
     color: <?php echo $GLOBALS['cfg']['BrowseMarkerColor']; ?>;
 }
+<?php } ?>
 
+<?php if ($GLOBALS['cfg']['BrowsePointerEnable']) { ?>
 /* hovered items */
-table tbody:first-of-type tr:not(.nopointer):hover,
-table tbody:first-of-type tr:not(.nopointer):hover th,
-.hover:not(.nopointer) {
+.odd:hover,
+.even:hover,
+.hover {
     <?php echo $_SESSION['PMA_Theme']->getCssGradient('ced6df', 'b6c6d7'); ?>
     color: <?php echo $GLOBALS['cfg']['BrowsePointerColor']; ?>;
 }
 
 /* hovered table rows */
-table tr.hover:not(.nopointer) th {
+table tr.odd:hover th,
+table tr.even:hover th,
+table tr.hover th {
     <?php echo $_SESSION['PMA_Theme']->getCssGradient('ced6df', 'b6c6d7'); ?>
     color: <?php echo $GLOBALS['cfg']['BrowsePointerColor']; ?>;
 }
+<?php } ?>
 
 /**
  * marks table rows/cells if the db field is in a where condition
@@ -599,19 +532,19 @@ tr:last-child td.condition {
     border-width: 0 1px 1px 1px;
 }
 
-<?php if ($GLOBALS['text_dir'] === 'ltr') : ?>
-    /* for first th which must have right border set (ltr only) */
-    .before-condition {
+<?php if ($GLOBALS['text_dir'] === 'ltr') { ?>
+/* for first th which must have right border set (ltr only) */
+.before-condition {
     border-right: 1px solid <?php echo $GLOBALS['cfg']['BrowseMarkerBackground']; ?>;
-    }
-<?php endif; ?>
+}
+<?php } ?>
 
 /**
  * cells with the value NULL
  */
 td.null {
     font-style: italic;
-    color: #7d7d7d;
+    text-align: <?php echo $right; ?>;
 }
 
 table .valueHeader {
@@ -628,11 +561,11 @@ table [class=value] {
 }
 
 
-<?php if (! empty($GLOBALS['cfg']['FontFamilyFixed'])) : ?>
-    .value {
+<?php if (! empty($GLOBALS['cfg']['FontFamilyFixed'])) { ?>
+.value {
     font-family: <?php echo $GLOBALS['cfg']['FontFamilyFixed']; ?>;
-    }
-<?php endif; ?>
+}
+<?php } ?>
 .attention {
     color: red;
     font-weight: bold;
@@ -669,11 +602,71 @@ img.lightbulb {
     border: 1px dashed #000;
 }
 
-/* Doc links in SQL */
-.cm-sql-doc {
+/* MySQL Parser */
+.syntax {
+    font-family: Verdana, 'Segoe UI', Arial, Tahoma;
+    font-size: 110%;
+}
+
+.syntax a {
     text-decoration: none;
     border-bottom: 1px dotted #000;
-    color: inherit !important;
+}
+
+.syntax_comment {
+    padding-left: 4pt;
+    padding-right: 4pt;
+}
+
+.syntax_digit {
+}
+
+.syntax_digit_hex {
+}
+
+.syntax_digit_integer {
+}
+
+.syntax_digit_float {
+}
+
+.syntax_punct {
+}
+
+.syntax_alpha {
+}
+
+.syntax_alpha_columnType {
+    text-transform: uppercase;
+}
+
+.syntax_alpha_columnAttrib {
+    text-transform: uppercase;
+}
+
+.syntax_alpha_reservedWord {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.syntax_alpha_functionName {
+    text-transform: uppercase;
+}
+
+.syntax_alpha_identifier {
+}
+
+.syntax_alpha_charset {
+}
+
+.syntax_alpha_variable {
+}
+
+.syntax_quote {
+    white-space: pre;
+}
+
+.syntax_quote_backtick {
 }
 
 /* no extra space in table cells */
@@ -687,7 +680,7 @@ td .icon {
 }
 
 /* message boxes: error, confirmation */
-#pma_errors, #pma_demo, #pma_footer {
+#pma_errors {
     padding: 0 0.5em;
 }
 
@@ -703,17 +696,16 @@ div.error h1 {
 div.success,
 div.notice,
 div.error {
-    margin: .5em 0 0.5em;
+    margin: .5em 0 1.3em;
     border: 1px solid;
     background-repeat: no-repeat;
-    <?php if ($GLOBALS['text_dir'] === 'ltr') : ?>
-        background-position: 10px 50%;
-        padding: 10px 10px 10px 10px;
-    <?php else : ?>
-        background-position: 99% 50%;
-        padding: 10px 35px 10px 10px;
-        <?php
-    endif; ?>
+        <?php if ($GLOBALS['text_dir'] === 'ltr') { ?>
+    background-position: 10px 50%;
+    padding: 10px 10px 10px 10px;
+        <?php } else { ?>
+    background-position: 99% 50%;
+    padding: 10px 35px 10px 10px;
+        <?php } ?>
 
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -737,7 +729,7 @@ div.error {
 
 h1.success,
 div.success {
-    border-color: #a2d246;
+    border-color: #a2d246;    
 }
 .success h1 {
     border-color: #00FF00;
@@ -765,7 +757,7 @@ div.notice {
 
 h1.error,
 div.error {
-    border-color: #333;
+    border-color: #333; 
 }
 
 div.error h1 {
@@ -784,10 +776,6 @@ fieldset.confirmation legend {
 }
 
 /* end messageboxes */
-
-.new_central_col{
-    width: 100%;
-}
 
 .tblcomment {
     font-size: 70%;
@@ -879,13 +867,6 @@ form.login label {
     float: <?php echo $left; ?>;
     width: 10em;
     font-weight: bolder;
-}
-
-form.login input[type=text],
-form.login input[type=password],
-form.login select {
-    box-sizing: border-box;
-    width: 14em;
 }
 
 .commented_column {
@@ -987,11 +968,6 @@ ul#topmenu ul.only {
 ul#topmenu > li {
     border-right: 1px solid #fff;
     border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-
-ul#topmenu > li:first-child {
-    border-left: 0;
 }
 
 /* default tab styles */
@@ -1040,7 +1016,6 @@ ul#topmenu2 a.tabactive {
 ul#topmenu > li.active {
     /* border-bottom: 0pt solid <?php echo $GLOBALS['cfg']['MainBackground']; ?>; */
     border-right: 0;
-    border-bottom-color: #fff;
 }
 /* end topmenu */
 
@@ -1052,9 +1027,6 @@ div#dataDisplay select {
 }
 div#dataDisplay th {
     line-height: 2em;
-}
-table#tableFieldsId {
-    width: 100%;
 }
 
 /* Calendar */
@@ -1098,7 +1070,7 @@ div#tablestatistics table {
     min-width: 16em;
 }
 
-/* end table stats */
+/* END table stats */
 
 
 /* server privileges */
@@ -1107,7 +1079,7 @@ div#tablestatistics table {
 #tabledatabases td {
     vertical-align: middle;
 }
-/* end server privileges */
+/* END server privileges */
 
 
 /* Heading */
@@ -1117,6 +1089,7 @@ div#tablestatistics table {
 }
 
 #serverinfo {
+    border-bottom: 1px solid #fff;
     background: #888;
     padding: .3em .9em;
     padding-<?php echo $left; ?>: 2.2em;
@@ -1128,41 +1101,22 @@ div#tablestatistics table {
 #serverinfo .item {
     white-space: nowrap;
     color: #fff;
+    float: <?php echo $left; ?>
 }
 
-#page_nav_icons {
+#goto_pagetop {
     position: fixed;
+    padding: .25em .25em .2em;
     top: 0;
     <?php echo $right; ?>: 0;
-    z-index: 99;
-    padding: .25em 0;
-}
-
-#goto_pagetop, #lock_page_icon, #page_settings_icon {
-    padding: .25em;
+    z-index: 900;
     background: #888;
 }
 
-#page_settings_icon {
-    cursor: pointer;
-    display: none;
-}
-
-#page_settings_modal {
-    display: none;
-}
-
-#pma_navigation_settings {
-    display: none;
-}
-
 #span_table_comment {
-    font-weight: bold;
+    font-weight: normal;
     font-style: italic;
     white-space: nowrap;
-    margin-left: 10px;
-    color: #D6D6D6;
-    text-shadow: none;
 }
 
 #serverinfo img {
@@ -1253,15 +1207,7 @@ div#tablestatistics table {
 #fieldset_user_global_rights fieldset {
     float: <?php echo $left; ?>;
 }
-
-#fieldset_user_group_rights fieldset {
-    float: <?php echo $left; ?>;
-}
-
-#fieldset_user_global_rights>legend input {
-    margin-<?php echo $left; ?>: 2em;
-}
-/* end user privileges */
+/* END user privileges */
 
 
 /* serverstatus */
@@ -1277,6 +1223,12 @@ h3#serverstatusqueries span {
     display: inline;
 }
 
+img.sortableIcon {
+    float: <?php echo $right; ?>;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
 .buttonlinks {
     float: <?php echo $right; ?>;
     white-space: nowrap;
@@ -1284,7 +1236,7 @@ h3#serverstatusqueries span {
 
 /* Also used for the variables page */
 fieldset#tableFilter {
-    padding: 0.1em 1em;
+    margin-bottom: 1em;
 }
 
 div#serverStatusTabs {
@@ -1350,29 +1302,13 @@ div#chartVariableSettings {
     margin-left: 10px;
 }
 
-table#chartGrid td {
-    padding: 3px;
-    margin: 0;
-}
-
 table#chartGrid div.monitorChart {
     background: #EBEBEB;
-    overflow: hidden;
-    border: none;
 }
 
-div.tabLinks {
-    margin-left: 0.3em;
+div#serverstatus div.tabLinks {
     float: <?php echo $left; ?>;
-    padding: 5px 0;
-}
-
-div.tabLinks a, div.tabLinks label {
-    margin-right: 7px;
-}
-
-div.tabLinks .icon {
-    margin: -0.2em 0.3em 0 0;
+    padding-bottom: 10px;
 }
 
 .popupContent {
@@ -1427,10 +1363,9 @@ div#queryAnalyzerDialog table.queryNums {
 
 /* server variables */
 #serverVariables {
-    table-layout: fixed;
-    width: 100%;
+    min-width: 30em;
 }
-#serverVariables .var-row > td {
+#serverVariables .var-row > div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1442,17 +1377,15 @@ div#queryAnalyzerDialog table.queryNums {
     <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
     font-weight: bold;
 }
-#serverVariables .var-header {
+#serverVariables .var-header .var-value {
     text-align: <?php echo $left; ?>;
 }
 #serverVariables .var-row {
     padding: 0.5em;
     min-height: 18px;
 }
-#serverVariables .var-action {
-    width: 120px;
-}
 #serverVariables .var-name {
+    width: 45%;
     float: <?php echo $left; ?>;
     font-weight: bold;
 }
@@ -1506,19 +1439,19 @@ p.notice {
     margin: 1.5em 0;
     border: 1px solid #000;
     background-repeat: no-repeat;
-    <?php if ($GLOBALS['text_dir'] === 'ltr') : ?>
-        background-position: 10px 50%;
-        padding: 10px 10px 10px 25px;
-    <?php else : ?>
-        background-position: 99% 50%;
-        padding: 25px 10px 10px 10px
-    <?php endif; ?>
+        <?php if ($GLOBALS['text_dir'] === 'ltr') { ?>
+    background-position: 10px 50%;
+    padding: 10px 10px 10px 25px;
+        <?php } else { ?>
+    background-position: 99% 50%;
+    padding: 25px 10px 10px 10px
+        <?php } ?>
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     -moz-box-shadow: 0 1px 2px #fff inset;
     -webkit-box-shadow: 0 1px 2px #fff inset;
-    box-shadow: 0 1px 2px #fff inset;
+    box-shadow: 0 1px 2px #fff; inset;
     background: #555;
     color: #d4fb6a;
 }
@@ -1528,33 +1461,45 @@ p.notice a {
     text-decoration: underline;
 }
 
+/* querywindow */
+body#bodyquerywindow {
+    margin: 0;
+    padding: 0;
+    background-image: none;
+    background-color: #F5F5F5;
+}
+
+div#querywindowcontainer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+div#querywindowcontainer fieldset {
+    margin-top: 0;
+}
+/* END querywindow */
+
 /* profiling */
 
 div#profilingchart {
-    width: 850px;
+    width: 550px;
     height: 370px;
     float: <?php echo $left; ?>;
 }
 
-#profilingchart .jqplot-highlighter-tooltip{
-    top: auto !important;
-    left: 11px;
-    bottom:24px;
-}
-/* end profiling */
+/* END profiling */
 
 /* table charting */
+
 #resizer {
     border: 1px solid silver;
 }
 #inner-resizer { /* make room for the resize handle */
     padding: 10px;
 }
-.chartOption {
-    float: <?php echo $left; ?>;
-    margin-<?php echo $right;?>: 40px;
-}
-/* end table charting */
+
+/* END table charting */
 
 /* querybox */
 
@@ -1583,25 +1528,32 @@ div#profilingchart {
 #sectionlinks a,
 .buttonlinks a,
 a.button {
+    font-size: .88em;
     font-weight: bold;
     text-shadow: 0 1px 0 #fff;
     line-height: 35px;
     margin-<?php echo $left; ?>: 7px;
     border: 1px solid #aaa;
-    padding: 3px 7px;
-    color: #111 !important;
+    padding: 5px 10px;
+    color: #111;
     text-decoration: none;
     background: #ddd;
     white-space: nowrap;
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('f8f8f8', 'd8d8d8'); ?>
+    box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>1px 1px 2px rgba(0,0,0,.5);
+    /*
+    -webkit-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>1px 1px 2px rgba(0,0,0,.5);
+    -moz-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>1px 1px 2px rgba(0,0,0,.5);
+    text-shadow: #fff 0 1px 0;
+    */
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
 }
 #sectionlinks a:hover,
 .buttonlinks a:hover,
 a.button:hover {
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'dddddd'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('cccccc', 'dddddd'); ?>
 }
 
 div#sqlquerycontainer {
@@ -1613,7 +1565,6 @@ div#sqlquerycontainer {
 div#tablefieldscontainer {
     float: <?php echo $right; ?>;
     width: 29%;
-    margin-top: -20px;
     /* height: 15em; */
 }
 
@@ -1664,33 +1615,25 @@ div#queryboxcontainer div#bookmarkoptions {
 #maincontainer li {
     margin-bottom: .3em;
 }
-
-#full_name_layer {
-    position: absolute;
-    padding: 2px;
-    margin-top: -3px;
-    z-index: 801;
-
-    border-radius: 3px;
-    border: solid 1px #888;
-    background: #fff;
-
-}
-/* end main page */
+/* END main page */
 
 
 /* iconic view for ul items */
 
 li.no_bullets {
-    list-style-type:none !important;
+    list-style-type:none !important;    
     margin-left: -25px !important;      //align with other list items which have bullets
 }
 
-/* end iconic view for ul items */
+/* END iconic view for ul items */
 
 #body_browse_foreigners {
     background: <?php echo $GLOBALS['cfg']['NaviBackground']; ?>;
     margin: .5em .5em 0 .5em;
+}
+
+#bodyquerywindow {
+    background: <?php echo $GLOBALS['cfg']['NaviBackground']; ?>;
 }
 
 #bodythemes {
@@ -1731,35 +1674,11 @@ li.no_bullets {
     float: <?php echo $left; ?>;
 }
 
-#div_mysql_charset_collations table th,
-#div_mysql_charset_collations table td {
-    padding: 0.4em;
-}
-
-#div_mysql_charset_collations table th#collationHeader {
-    width: 35%;
-}
-
 .operations_half_width {
     width: 48%;
     float: <?php echo $left; ?>;
 }
-.operations_half_width input[type=text],
-.operations_half_width input[type=password],
-.operations_half_width input[type=number],
-.operations_half_width select {
-    width: 95%;
-}
-.operations_half_width input[type=text].halfWidth,
-.operations_half_width input[type=password].halfWidth,
-.operations_half_width input[type=number].halfWidth,
-.operations_half_width select.halfWidth {
-    width: 40%;
-}
-.operations_half_width ul {
-    list-style-type: none;
-    padding: 0;
-}
+
 .operations_full_width {
     width: 100%;
     clear: both;
@@ -1782,16 +1701,6 @@ label.desc sup {
     position: absolute;
 }
 
-code.php {
-    display: block;
-    padding-left: 1em;
-    margin-top: 0;
-    margin-bottom: 0;
-    max-height: 10em;
-    overflow: auto;
-    direction: ltr;
-}
-
 code.sql,
 div.sqlvalidate {
     display: block;
@@ -1800,39 +1709,19 @@ div.sqlvalidate {
     margin-bottom: 0;
     max-height: 10em;
     overflow: auto;
-    direction: ltr;
-}
-
-.result_query div.sqlOuter {
-    background: <?php echo $GLOBALS['cfg']['BgOne']; ?>;
-}
-
-.result_query .success, .result_query .error {
-    margin-bottom: 0;
-    border-bottom: none !important;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    padding-bottom: 5px;
-}
-
-#PMA_slidingMessage code.sql,
-div.sqlvalidate {
     background: <?php echo $GLOBALS['cfg']['BgOne']; ?>;
 }
 
 #main_pane_left {
     width: 60%;
-    min-width: 260px;
     float: <?php echo $left; ?>;
     padding-top: 1em;
 }
 
 #main_pane_right {
-    overflow: hidden;
-    min-width: 160px;
+    margin-<?php echo $left; ?>: 60%;
     padding-top: 1em;
     padding-<?php echo $left; ?>: 1em;
-    padding-<?php echo $right; ?>: .5em;
 }
 
 .group {
@@ -1880,8 +1769,7 @@ textarea#partitiondefinition {
 }
 
 #list_server {
-    list-style-type: none;
-    padding: 0;
+    list-style-image: none;
 }
 
 /**
@@ -1942,10 +1830,6 @@ table#serverconnection_trg_local  {
   *  Validation error message styles
   */
 input[type=text].invalid_value,
-input[type=password].invalid_value,
-input[type=number].invalid_value,
-input[type=date].invalid_value,
-select.invalid_value,
 .invalid_value {
     background: #FFCCCC;
 }
@@ -1995,30 +1879,6 @@ select.invalid_value,
   * Export and Import styles
   */
 
-.export_table_list_container {
-    display: inline-block;
-    max-height: 20em;
-    overflow-y: scroll;
-}
-
-.export_table_select th {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.export_table_select .all {
-    font-weight: bold;
-    border-bottom: 1px solid black;
-}
-
-.export_structure, .export_data {
-    text-align: center;
-}
-
-.export_table_name {
-    vertical-align: middle;
-}
-
 .exportoptions h3,
 .importoptions h3 {
     border-bottom: 1px #999 solid;
@@ -2066,6 +1926,7 @@ select.invalid_value,
     padding: 5px 12px;
     color: #111;
     text-decoration: none;
+    background: #ddd;
 
     border-radius: 12px;
     -webkit-border-radius: 12px;
@@ -2075,6 +1936,9 @@ select.invalid_value,
 
     <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
     cursor: pointer;
+}
+#buttonGo:hover {
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('cccccc', 'dddddd'); ?>
 }
 
 .format_specific_options h3 {
@@ -2119,6 +1983,7 @@ select#table_select {
     margin-bottom: 0;
 }
 
+#quick_or_custom,
 #output_quick_export {
     display: none;
 }
@@ -2137,10 +2002,6 @@ input#input_import_file {
 
 .formelementrow {
     margin: 5px 0 5px 0;
-}
-
-#filterText {
-    vertical-align: baseline;
 }
 
 #popup_background {
@@ -2176,20 +2037,12 @@ input#input_import_file {
     padding: 0.3em;
     margin: 0.1em;
 }
-#structure-action-links a {
-    margin-<?php echo $right; ?>: 1em;
-}
-#addColumns input[type="radio"] {
-    margin: 3px 0 0;
-    margin-<?php echo $left; ?>: 1em;
-}
 /**
  * Indexes
  */
-#index_frm .index_info input[type="text"],
+#index_frm .index_info input,
 #index_frm .index_info select {
     width: 14em;
-    margin: 0;
     box-sizing: border-box;
     -ms-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -2232,8 +2085,7 @@ table#index_columns {
 }
 
 table#index_columns select {
-    width: 85%;
-    float: right;
+    width: 100%;
 }
 
 #move_columns_dialog div {
@@ -2256,6 +2108,10 @@ table#index_columns select {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
+}
+
+.margin#change_column_dialog {
+    margin: 0 .5em;
 }
 
 /* config forms */
@@ -2420,7 +2276,7 @@ fieldset .disabled-field td {
 }
 
 .config-form .lastrow {
-    background: <?php echo $GLOBALS['cfg']['ThBackground']; ?>;
+    background: <?php echo $GLOBALS['cfg']['ThBackground']; ?>;;
     padding: .5em;
     text-align: center;
 }
@@ -2451,8 +2307,6 @@ fieldset .disabled-field td {
 }
 
 .config-form input[type="text"],
-.config-form input[type="password"],
-.config-form input[type="number"],
 .config-form select,
 .config-form textarea {
     border: 1px #A7A6AA solid;
@@ -2460,8 +2314,6 @@ fieldset .disabled-field td {
 }
 
 .config-form input[type="text"]:focus,
-.config-form input[type="password"]:focus,
-.config-form input[type="number"]:focus,
 .config-form select:focus,
 .config-form textarea:focus {
     border: 1px #6676FF solid;
@@ -2500,7 +2352,6 @@ fieldset .disabled-field td {
 
 #prefs_autoload {
     margin-bottom: .5em;
-    margin-left: .5em;
 }
 
 #placeholder .button {
@@ -2542,10 +2393,6 @@ fieldset .disabled-field td {
 .toggleButton .container {
     position: absolute;
 }
-.toggleButton .container td {
-    background-image: none;
-    background: none;
-}
 .toggleButton .toggleOn {
     color: #fff;
     padding: 0 1em;
@@ -2573,26 +2420,17 @@ fieldset .disabled-field td {
     padding: 1.5em;
 }
 
-#table_name_col_no_outer {
-    margin-top: 45px;
-}
-
-#table_name_col_no {
-    position: fixed;
-    top: 55px;
-    width: 100%;
-    background: #ffffff;
-}
-
 #table_columns input[type="text"],
-#table_columns input[type="password"],
-#table_columns input[type="number"],
 #table_columns select {
     width: 10em;
     box-sizing: border-box;
     -ms-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+}
+
+#table_columns select {
+    margin: 0 6px;
 }
 
 #placeholder {
@@ -2665,18 +2503,6 @@ fieldset .disabled-field td {
 .pma_table tbody td span {
     display: block;
     overflow: hidden;
-}
-
-.pma_table tbody td span code span {
-    display: inline;
-}
-
-.pma_table th.draggable.right span {
-    margin-<?php echo $right; ?>: 0px;
-}
-
-.pma_table th.draggable span {
-    margin-<?php echo $right; ?>: 10px;
 }
 
 .modal-copy input {
@@ -2792,11 +2618,8 @@ fieldset .disabled-field td {
     background: #DDD;
 }
 
-.turnOffSelect {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
+#page_content {
+    background-color: white;
 }
 
 .navigation {
@@ -2883,10 +2706,8 @@ fieldset .disabled-field td {
 }
 
 .cEdit .edit_box {
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: hidden;
     padding: 0;
-    margin: 0;
 }
 
 .cEdit .edit_box_posting {
@@ -2910,16 +2731,11 @@ fieldset .disabled-field td {
     padding-<?php echo $left; ?>: 20px;
 }
 
-.relationalTable select {
-    width: 125px;
-    margin-right: 5px;
-}
-
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: <?php echo $left; ?>; }
 .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
-.ui-timepicker-div dl dd { margin: 0 10px 10px 85px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
 .ui-timepicker-div td { font-size: 90%; }
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 .ui-timepicker-rtl { direction: rtl; }
@@ -2941,594 +2757,10 @@ body .ui-widget {
 
 /* over-riding jqplot-yaxis class */
 .jqplot-yaxis {
-    left:0 !important;
+    left:0px !important;
     min-width:25px;
     width:auto;
 }
 .jqplot-axis {
     overflow:hidden;
 }
-
-.report-data {
-    height:13em;
-    overflow:scroll;
-    width:570px;
-    border: solid 1px;
-    background: white;
-    padding: 2px;
-}
-
-.report-description {
-    height:10em;
-    width:570px;
-}
-
-div#page_content div#tableslistcontainer table.data {
-    border-top: 0.1px solid #EEEEEE;
-}
-
-div#page_content div#tableslistcontainer, div#page_content div.notice, div#page_content div.result_query {
-    margin-top: 1em;
-}
-
-table.show_create {
-    margin-top: 1em;
-}
-
-table.show_create td {
-    border-right: 1px solid #bbb;
-}
-
-#alias_modal table {
-    width: 100%;
-}
-
-#alias_modal label {
-    font-weight: bold;
-}
-
-.ui-dialog {
-    position: fixed;
-}
-
-
-.small_font {
-    font-size: smaller;
-}
-
-/* Console styles */
-#pma_console_container {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    <?php echo $left; ?>: 0;
-    z-index: 100;
-}
-#pma_console {
-    position: relative;
-    margin-<?php echo $left; ?>: 240px;
-}
-#pma_console .templates {
-    display: none;
-}
-#pma_console .mid_text,
-#pma_console .toolbar span {
-    vertical-align: middle;
-}
-#pma_console .toolbar {
-    position: relative;
-    background: #ccc;
-    border-top: solid 1px #aaa;
-    cursor: n-resize;
-}
-#pma_console .toolbar.collapsed:not(:hover) {
-    display: inline-block;
-    border-top-<?php echo $right; ?>-radius: 3px;
-    border-<?php echo $right; ?>: solid 1px #aaa;
-}
-#pma_console .toolbar.collapsed {
-    cursor: default;
-}
-#pma_console .toolbar.collapsed>.button {
-    display: none;
-}
-#pma_console .message span.text,
-#pma_console .message span.action,
-#pma_console .toolbar .button,
-#pma_console .toolbar .text,
-#pma_console .switch_button {
-    padding: 0 3px;
-    display: inline-block;
-}
-#pma_console .message span.action,
-#pma_console .toolbar .button,
-#pma_console .switch_button {
-    cursor: pointer;
-}
-#pma_console .message span.action:hover,
-#pma_console .toolbar .button:hover,
-#pma_console .switch_button:hover,
-#pma_console .toolbar .button.active {
-    background: #ddd;
-}
-#pma_console .toolbar .text {
-    font-weight: bold;
-}
-#pma_console .toolbar .button,
-#pma_console .toolbar .text {
-    margin-<?php echo $right; ?>: .4em;
-}
-#pma_console .toolbar .button,
-#pma_console .toolbar .text {
-    float: <?php echo $right; ?>;
-}
-#pma_console .content {
-    overflow-x: hidden;
-    overflow-y: auto;
-    margin-bottom: -65px;
-    border-top: solid 1px #aaa;
-    background: #fff;
-    padding-top: .4em;
-}
-#pma_console .content.console_dark_theme {
-    background: #000;
-    color: #fff;
-}
-#pma_console .content.console_dark_theme .CodeMirror-wrap {
-    background: #000;
-    color: #fff;
-}
-#pma_console .content.console_dark_theme .action_content {
-    color: #000;
-}
-#pma_console .content.console_dark_theme .message {
-    border-color: #373B41;
-}
-#pma_console .content.console_dark_theme .CodeMirror-cursor {
-    border-color: #fff;
-}
-#pma_console .content.console_dark_theme .cm-keyword {
-    color: #de935f;
-}
-#pma_console .message,
-#pma_console .query_input {
-    position: relative;
-    font-family: Monaco, Consolas, monospace;
-    cursor: text;
-    margin: 0 10px .2em 1.4em;
-}
-#pma_console .message {
-    border-bottom: solid 1px #ccc;
-    padding-bottom: .2em;
-}
-#pma_console .message.expanded>.action_content {
-    position: relative;
-}
-#pma_console .message:before,
-#pma_console .query_input:before {
-    left: -0.7em;
-    position: absolute;
-    content: ">";
-}
-#pma_console .query_input:before {
-    top: -2px;
-}
-#pma_console .query_input textarea {
-    width: 100%;
-    height: 4em;
-    resize: vertical;
-}
-#pma_console .message:hover:before {
-    color: #7cf;
-    font-weight: bold;
-}
-#pma_console .message.expanded:before {
-    content: "]";
-}
-#pma_console .message.welcome:before {
-    display: none;
-}
-#pma_console .message.failed:before,
-#pma_console .message.failed.expanded:before,
-#pma_console .message.failed:hover:before {
-    content: "=";
-    color: #944;
-}
-#pma_console .message.pending:before {
-    opacity: .3;
-}
-#pma_console .message.collapsed>.query {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-#pma_console .message.expanded>.query {
-    display: block;
-    white-space: pre;
-    word-wrap: break-word;
-}
-#pma_console .message .text.targetdb,
-#pma_console .message.collapsed .action.collapse,
-#pma_console .message.expanded .action.expand,
-#pma_console .message .action.requery,
-#pma_console .message .action.profiling,
-#pma_console .message .action.explain,
-#pma_console .message .action.bookmark {
-    display: none;
-}
-#pma_console .message.select .action.profiling,
-#pma_console .message.select .action.explain,
-#pma_console .message.history .text.targetdb,
-#pma_console .message.successed .text.targetdb,
-#pma_console .message.history .action.requery,
-#pma_console .message.history .action.bookmark,
-#pma_console .message.bookmark .action.requery,
-#pma_console .message.bookmark .action.bookmark,
-#pma_console .message.successed .action.requery,
-#pma_console .message.successed .action.bookmark {
-    display: inline-block;
-}
-#pma_console .message .action_content {
-    position: absolute;
-    bottom: 100%;
-    background: #ccc;
-    border: solid 1px #aaa;
-    border-top-<?php echo $left; ?>-radius: 3px;
-}
-html.ie8 #pma_console .message .action_content {
-    position: relative!important;
-}
-#pma_console .message.bookmark .text.targetdb,
-#pma_console .message .text.query_time {
-    margin: 0;
-    display: inline-block;
-}
-#pma_console .message.failed .text.query_time,
-#pma_console .message .text.failed {
-    display: none;
-}
-#pma_console .message.failed .text.failed {
-    display: inline-block;
-}
-#pma_console .message .text {
-    background: #fff;
-}
-#pma_console .message.collapsed>.action_content {
-    display: none;
-}
-#pma_console .message.collapsed:hover>.action_content {
-    display: block;
-}
-#pma_console .message .bookmark_label {
-    padding: 0 4px;
-    top: 0;
-    background: #369;
-    color: #fff;
-    border-radius: 3px;
-}
-#pma_console .message .bookmark_label.shared {
-    background: #396;
-}
-#pma_console .message.expanded .bookmark_label {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-#pma_console .query_input {
-    position: relative;
-}
-#pma_console .mid_layer {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    /* For support IE8, this layer doesn't use filter:opacity or opacity,
-    js code will fade this layer opacity to 0.18(using animation) */
-    background: #666;
-    display: none;
-    cursor: pointer;
-    z-index: 200;
-}
-#pma_console .card {
-    position: absolute;
-    width: 94%;
-    height: 100%;
-    min-height: 48px;
-    <?php echo $left; ?>: 100%;
-    top: 0;
-    border-<?php echo $left; ?>: solid 1px #999;
-    z-index: 300;
-    transition: <?php echo $left; ?> 0.2s;
-    -ms-transition: <?php echo $left; ?> 0.2s;
-    -webkit-transition: <?php echo $left; ?> 0.2s;
-    -moz-transition: <?php echo $left; ?> 0.2s;
-}
-#pma_console .card.show {
-    <?php echo $left; ?>: 6%;
-    box-shadow: -2px 1px 4px -1px #999;
-}
-
-html.ie7 #pma_console .query_input {
-    display: none;
-}
-
-#pma_bookmarks .content.add_bookmark,
-#pma_console_options .content {
-    padding: 4px 6px;
-}
-#pma_bookmarks .content.add_bookmark .options {
-    margin-<?php echo $left; ?>: 1.4em;
-    padding-bottom: .4em;
-    margin-bottom: .4em;
-    border-bottom: solid 1px #ccc;
-}
-#pma_bookmarks .content.add_bookmark .options button {
-    margin: 0 7px;
-    vertical-align: bottom;
-}
-#pma_bookmarks .content.add_bookmark input[type=text] {
-    margin: 0;
-    padding: 2px 4px;
-}
-#pma_console .button.hide,
-#pma_console .message span.text.hide {
-    display: none;
-}
-#debug_console.grouped .ungroup_queries,
-#debug_console.ungrouped .group_queries {
-    display: inline-block;
-}
-#debug_console.ungrouped .ungroup_queries,
-#debug_console.ungrouped .sort_count,
-#debug_console.grouped .group_queries {
-    display: none;
-}
-#debug_console .count {
-    margin-right: 8px;
-}
-#debug_console .show_trace .trace,
-#debug_console .show_args .args {
-    display: block;
-}
-#debug_console .hide_trace .trace,
-#debug_console .hide_args .args,
-#debug_console .show_trace .action.dbg_show_trace,
-#debug_console .hide_trace .action.dbg_hide_trace,
-#debug_console .traceStep.hide_args .action.dbg_hide_args,
-#debug_console .traceStep.show_args .action.dbg_show_args {
-    display: none;
-}
-
-#debug_console .traceStep:after,
-#debug_console .trace.welcome:after,
-#debug_console .debug>.welcome:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-#debug_console .debug_summary {
-    float: left;
-}
-#debug_console .trace.welcome .time {
-    float: right;
-}
-#debug_console .traceStep .file,
-#debug_console .script_name {
-    float: right;
-}
-#debug_console .traceStep .args pre {
-    margin: 0;
-}
-
-/* Code mirror console style*/
-
-.cm-s-pma .CodeMirror-code pre,
-.cm-s-pma .CodeMirror-code {
-    font-family: Monaco, Consolas, monospace;
-}
-.cm-s-pma .CodeMirror-measure>pre,
-.cm-s-pma .CodeMirror-code>pre,
-.cm-s-pma .CodeMirror-lines {
-    padding: 0;
-}
-.cm-s-pma.CodeMirror {
-    resize: none;
-    height: auto;
-    width: 100%;
-    min-height: initial;
-    max-height: initial;
-}
-.cm-s-pma .CodeMirror-scroll {
-    cursor: text;
-}
-
-/* PMA drop-improt style */
-
-.pma_drop_handler {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    height: 100%;
-    z-index: 999;
-    color: white;
-    font-size: 30pt;
-    text-align: center;
-    padding-top: 20%;
-}
-
-.pma_sql_import_status {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 25px;
-    width: 400px;
-    border: 1px solid #999;
-    background: #f3f3f3;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    -moz-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>2px 2px 5px #ccc;
-    -webkit-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>2px 2px 5px #ccc;
-    box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>2px 2px 5px #ccc;
-}
-
-.pma_sql_import_status h2,
-.pma_drop_result h2 {
-    background-color: #bbb;
-    padding: .1em .3em;
-    margin-top: 0;
-    margin-bottom: 0;
-    color: #fff;
-    font-size: 1.6em;
-    font-weight: normal;
-    text-shadow: 0 1px 0 #777;
-    -moz-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>1px 1px 15px #999 inset;
-    -webkit-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>1px 1px 15px #999 inset;
-    box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>1px 1px 15px #999 inset;
-}
-
-.pma_sql_import_status div {
-    height: 270px;
-    overflow-y:auto;
-    overflow-x:hidden;
-    list-style-type: none;
-}
-
-.pma_sql_import_status div li {
-    padding: 8px 10px;
-    border-bottom: 1px solid #bbb;
-    color: rgb(148, 14, 14);
-    background: white;
-}
-
-.pma_sql_import_status div li .filesize {
-    float: right;
-}
-
-.pma_sql_import_status h2 .minimize {
-    float: right;
-    margin-right: 5px;
-    padding: 0 10px;
-}
-
-.pma_sql_import_status h2 .close {
-    float: right;
-    margin-right: 5px;
-    padding: 0 10px;
-    display: none;
-}
-
-.pma_sql_import_status h2 .minimize:hover,
-.pma_sql_import_status h2 .close:hover,
-.pma_drop_result h2 .close:hover {
-    background: rgba(155, 149, 149, 0.78);
-    cursor: pointer;
-}
-
-.pma_drop_file_status {
-    color: #235a81;
-}
-
-.pma_drop_file_status span.underline:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.pma_drop_result {
-    position: fixed;
-    top: 10%;
-    left: 20%;
-    width: 60%;
-    background: white;
-    min-height: 300px;
-    z-index: 800;
-    -webkit-box-shadow: 0 0 15px #999;
-    border-radius: 10px;
-    cursor: move;
-}
-
-.pma_drop_result h2 .close {
-    float: right;
-    margin-right: 5px;
-    padding: 0 10px;
-}
-
-.dependencies_box {
-    background-color: white;
-    border: 3px ridge black;
-}
-
-#composite_index_list {
-    list-style-type: none;
-    list-style-position: inside;
-}
-
-span.drag_icon {
-    display: inline-block;
-    background-image: url('<?php echo $_SESSION['PMA_Theme']->getImgPath('s_sortable.png');?>');
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: 1em;
-    height: 3em;
-    cursor: move;
-}
-
-.topmargin {
-    margin-top: 1em;
-}
-
-meter[value="1"]::-webkit-meter-optimum-value {
-    background: linear-gradient(white 3%, #E32929 5%, transparent 10%, #E32929);
-}
-meter[value="2"]::-webkit-meter-optimum-value {
-    background: linear-gradient(white 3%, #FF6600 5%, transparent 10%, #FF6600);
-}
-meter[value="3"]::-webkit-meter-optimum-value {
-    background: linear-gradient(white 3%, #FFD700 5%, transparent 10%, #FFD700);
-}
-
-/* styles for sortable tables created with tablesorter jquery plugin */
-th.header {
-    cursor: pointer;
-    color: #235a81;
-}
-
-th.header:hover {
-    text-decoration: underline;
-}
-
-th.header .sorticon {
-    width: 16px;
-    height: 16px;
-    background-repeat: no-repeat;
-    background-position: right center;
-    display: inline-table;
-    vertical-align: middle;
-    float: right;
-}
-
-th.headerSortUp .sorticon, th.headerSortDown:hover .sorticon {
-    background-image: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('s_desc.png');?>);
-}
-
-th.headerSortDown .sorticon, th.headerSortUp:hover .sorticon {
-    background-image: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('s_asc.png');?>);
-}
-/* end of styles of sortable tables */
-
-/* styles for jQuery-ui to support rtl languages */
-body .ui-dialog .ui-dialog-titlebar-close {
-    <?php echo $right; ?>: .3em;
-    <?php echo $left; ?>: initial;
-}
-
-body .ui-dialog .ui-dialog-title {
-    float: <?php echo $left; ?>;
-}
-
-body .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
-    float: <?php echo $right; ?>;
-}
-/* end of styles for jQuery-ui to support rtl languages */

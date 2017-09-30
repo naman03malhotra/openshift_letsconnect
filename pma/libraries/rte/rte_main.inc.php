@@ -5,9 +5,6 @@
  *
  * @package PhpMyAdmin
  */
-use PMA\libraries\URL;
-use PMA\libraries\Response;
-
 if (! defined('PHPMYADMIN')) {
     exit;
 }
@@ -16,35 +13,21 @@ if (! defined('PHPMYADMIN')) {
  * Include all other files that are common
  * to routines, triggers and events.
  */
-require_once './libraries/rte/rte_general.lib.php';
 require_once './libraries/rte/rte_words.lib.php';
 require_once './libraries/rte/rte_export.lib.php';
 require_once './libraries/rte/rte_list.lib.php';
 require_once './libraries/rte/rte_footer.lib.php';
 
-$response = Response::getInstance();
-
-if (! $response->isAjax()) {
+if ($GLOBALS['is_ajax_request'] != true) {
     /**
      * Displays the header and tabs
      */
-    if (! empty($table) && in_array($table, $GLOBALS['dbi']->getTables($db))) {
+    if (! empty($table) && in_array($table, PMA_DBI_get_tables($db))) {
         include_once './libraries/tbl_common.inc.php';
     } else {
         $table = '';
         include_once './libraries/db_common.inc.php';
-
-        list(
-            $tables,
-            $num_tables,
-            $total_num_tables,
-            $sub_part,
-            $is_show_stats,
-            $db_is_system_schema,
-            $tooltip_truename,
-            $tooltip_aliasname,
-            $pos
-        ) = PMA\libraries\Util::getDbInfo($db, isset($sub_part) ? $sub_part : '');
+        include_once './libraries/db_info.inc.php';
     }
 } else {
     /**
@@ -52,14 +35,10 @@ if (! $response->isAjax()) {
      * to manually select the required database and
      * create the missing $url_query variable
      */
-    if (strlen($db) > 0) {
-        $GLOBALS['dbi']->selectDb($db);
+    if (strlen($db)) {
+        PMA_DBI_select_db($db);
         if (! isset($url_query)) {
-            $url_query = URL::getCommon(
-                array(
-                    'db' => $db, 'table' => $table
-                )
-            );
+            $url_query = PMA_generate_common_url($db, $table);
         }
     }
 }
@@ -68,6 +47,13 @@ if (! $response->isAjax()) {
  * Generate the conditional classes that will
  * be used to attach jQuery events to links
  */
+$ajax_class = array(
+    'add'    => '',
+    'edit'   => '',
+    'exec'   => '',
+    'drop'   => '',
+    'export' => ''
+);
 $ajax_class = array(
     'add'    => 'class="ajax add_anchor"',
     'edit'   => 'class="ajax edit_anchor"',
@@ -79,10 +65,10 @@ $ajax_class = array(
 /**
  * Create labels for the list
  */
-$titles = PMA\libraries\Util::buildActionTitles();
+$titles = PMA_Util::buildActionTitles();
 
 /**
- * Keep a list of errors that occurred while
+ * Keep a list of errors that occured while
  * processing an 'Add' or 'Edit' operation.
  */
 $errors = array();
@@ -93,11 +79,7 @@ $errors = array();
  */
 switch ($_PMA_RTE) {
 case 'RTN':
-    $type = null;
-    if (isset($_REQUEST['type'])) {
-        $type = $_REQUEST['type'];
-    }
-    PMA_RTN_main($type);
+    PMA_RTN_main();
     break;
 case 'TRI':
     PMA_TRI_main();
@@ -107,3 +89,4 @@ case 'EVN':
     break;
 }
 
+?>

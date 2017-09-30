@@ -8,15 +8,11 @@
  *
  * @package PhpMyAdmin
  */
-use PMA\libraries\Response;
 
 /**
  * Gets core libraries and defines some variables
  */
 require 'libraries/common.inc.php';
-
-$response = Response::getInstance();
-$response->disable();
 
 /**
  *
@@ -26,15 +22,10 @@ header('Content-type: text/plain; charset=utf-8');
 $filename = LICENSE_FILE;
 
 // Check if the file is available, some distributions remove these.
-if (@is_readable($filename)) {
+if (is_readable($filename)) {
     readfile($filename);
 } else {
-    printf(
-        __(
-            'The %s file is not available on this system, please visit ' .
-            '%s for more information.'
-        ),
-        $filename,
-        'https://www.phpmyadmin.net/'
-    );
+    printf(__('The %s file is not available on this system, please visit www.phpmyadmin.net for more information.'), $filename);
 }
+
+?>

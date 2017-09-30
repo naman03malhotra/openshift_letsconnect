@@ -1,7 +1,7 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
- * searches the entire database
+ * searchs the entire database
  *
  * @todo    make use of UNION when searching multiple tables
  * @todo    display executed query, optional?
@@ -12,11 +12,9 @@
  * Gets some core libraries
  */
 require_once 'libraries/common.inc.php';
+require_once 'libraries/DbSearch.class.php';
 
-use PMA\libraries\Response;
-use PMA\libraries\DbSearch;
-
-$response = Response::getInstance();
+$response = PMA_Response::getInstance();
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
 $scripts->addFile('db_search.js');
@@ -26,32 +24,23 @@ $scripts->addFile('jquery/jquery-ui-timepicker-addon.js');
 
 require 'libraries/db_common.inc.php';
 
-// If config variable $GLOBALS['cfg']['UseDbSearch'] is on false : exit.
+// If config variable $GLOBALS['cfg']['Usedbsearch'] is on false : exit.
 if (! $GLOBALS['cfg']['UseDbSearch']) {
-    PMA\libraries\Util::mysqlDie(
-        __('Access denied!'), '', false, $err_url
+    PMA_Util::mysqlDie(
+        __('Access denied'), '', false, $err_url
     );
 } // end if
 $url_query .= '&amp;goto=db_search.php';
 $url_params['goto'] = 'db_search.php';
 
 // Create a database search instance
-$db_search = new DbSearch($GLOBALS['db']);
+$db_search = new PMA_DbSearch($GLOBALS['db']);
 
 // Display top links if we are not in an Ajax request
-if (! $response->isAjax()) {
-    list(
-        $tables,
-        $num_tables,
-        $total_num_tables,
-        $sub_part,
-        $is_show_stats,
-        $db_is_system_schema,
-        $tooltip_truename,
-        $tooltip_aliasname,
-        $pos
-    ) = PMA\libraries\Util::getDbInfo($db, isset($sub_part) ? $sub_part : '');
+if ( $GLOBALS['is_ajax_request'] != true) {
+    include 'libraries/db_info.inc.php';
 }
+$response->addHTML('<div id="searchresults">');
 
 // Main search form has been submitted, get results
 if (isset($_REQUEST['submit_search'])) {
@@ -59,15 +48,10 @@ if (isset($_REQUEST['submit_search'])) {
 }
 
 // If we are in an Ajax request, we need to exit after displaying all the HTML
-if ($response->isAjax() && empty($_REQUEST['ajax_page_request'])) {
+if ($GLOBALS['is_ajax_request'] == true && empty($_REQUEST['ajax_page_request'])) {
     exit;
 }
 
 // Display the search form
-$response->addHTML($db_search->getSelectionForm());
-$response->addHTML('<div id="searchresults"></div>');
-$response->addHTML(
-    '<div id="togglesearchresultsdiv"><a id="togglesearchresultlink"></a></div>'
-);
-$response->addHTML('<br class="clearfloat" />');
-$response->addHTML($db_search->getResultDivs());
+$response->addHTML($db_search->getSelectionForm($url_params));
+?>

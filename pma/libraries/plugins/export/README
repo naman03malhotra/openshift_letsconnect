@@ -15,12 +15,15 @@ if (! defined('PHPMYADMIN')) {
     exit;
 }
 
+/* Get the export interface */
+require_once 'libraries/plugins/ExportPlugin.class.php';
+
 /**
  * Handles the export for the [Name] format
  *
  * @package PhpMyAdmin-Export
  */
-class Export[Name] extends PMA\libraries\plugins\ExportPlugin
+class Export[Name] extends ExportPlugin
 {
     /**
      * optional - declare variables and descriptions
@@ -67,7 +70,17 @@ class Export[Name] extends PMA\libraries\plugins\ExportPlugin
      */
     protected function setProperties()
     {
-        $exportPluginProperties = new PMA\libraries\properties\plugins\ExportPluginProperties();
+        // set properties
+        $props = 'libraries/properties/';
+        // include the main class for properties for the export plug-ins
+        include_once "$props/plugins/ExportPluginProperties.class.php";
+        // include the group properties classes
+        include_once "$props/options/groups/OptionsPropertyRootGroup.class.php";
+        include_once "$props/options/groups/OptionsPropertyMainGroup.class.php";
+        // include the needed single property items
+        include_once "$props/options/items/RadioPropertyItem.class.php";
+
+        $exportPluginProperties = new ExportPluginProperties();
         $exportPluginProperties->setText('[name]');             // the name of your plug-in
         $exportPluginProperties->setExtension('[ext]');         // extension this plug-in can handle
         $exportPluginProperties->setOptionsText(__('Options'));
@@ -75,14 +88,12 @@ class Export[Name] extends PMA\libraries\plugins\ExportPlugin
         // create the root group that will be the options field for
         // $exportPluginProperties
         // this will be shown as "Format specific options"
-        $exportSpecificOptions = new PMA\libraries\properties\options\groups\OptionsPropertyRootGroup(
-            "Format Specific Options"
-        );
+        $exportSpecificOptions = new OptionsPropertyRootGroup();
+        $exportSpecificOptions->setName("Format Specific Options");
 
         // general options main group
-        $generalOptions = new PMA\libraries\properties\options\groups\OptionsPropertyMainGroup(
-            "general_opts"
-        );
+        $generalOptions = new OptionsPropertyMainGroup();
+        $generalOptions->setName("general_opts");
 
         // optional :
         // create primary items and add them to the group
@@ -92,9 +103,8 @@ class Export[Name] extends PMA\libraries\plugins\ExportPlugin
         // size - size of text element
         // len  - maximal size of input
         // values - possible values of the item
-        $leaf = new PMA\libraries\properties\options\items\RadioPropertyItem(
-            "structure_or_data"
-        );
+        $leaf = new RadioPropertyItem();
+        $leaf->setName("structure_or_data");
         $leaf->setValues(
             array(
                 'structure' => __('structure'),
@@ -110,6 +120,19 @@ class Export[Name] extends PMA\libraries\plugins\ExportPlugin
         // set the options for the export plugin property item
         $exportPluginProperties->setOptions($exportSpecificOptions);
         $this->properties = $exportPluginProperties;
+    }
+
+    /**
+     * This method is called when any PluginManager to which the observer
+     * is attached calls PluginManager::notify()
+     *
+     * @param SplSubject $subject The PluginManager notifying the observer
+     *                            of an update.
+     *
+     * @return void
+     */
+    public function update (SplSubject $subject)
+    {
     }
 
     /**
@@ -137,12 +160,11 @@ class Export[Name] extends PMA\libraries\plugins\ExportPlugin
     /**
      * Outputs database header
      *
-     * @param string $db       Database name
-     * @param string $db_alias Aliases of db
+     * @param string $db Database name
      *
      * @return bool Whether it succeeded
      */
-    public function exportDBHeader ($db, $db_alias = '')
+    public function exportDBHeader ($db)
     {
         // implementation
         return true;
@@ -164,12 +186,11 @@ class Export[Name] extends PMA\libraries\plugins\ExportPlugin
     /**
      * Outputs CREATE DATABASE statement
      *
-     * @param string $db       Database name
-     * @param string $db_alias Aliases of db
+     * @param string $db Database name
      *
      * @return bool Whether it succeeded
      */
-    public function exportDBCreate($db, $db_alias = '')
+    public function exportDBCreate($db)
     {
         // implementation
         return true;
@@ -183,18 +204,16 @@ class Export[Name] extends PMA\libraries\plugins\ExportPlugin
      * @param string $crlf      the end of line sequence
      * @param string $error_url the url to go back in case of error
      * @param string $sql_query SQL query for obtaining data
-     * @param array  $aliases   Aliases of db/table/columns
      *
      * @return bool Whether it succeeded
      */
-    public function exportData(
-        $db, $table, $crlf, $error_url, $sql_query, $aliases = array()
-    ) {
+    public function exportData($db, $table, $crlf, $error_url, $sql_query)
+    {
         // implementation;
         return true;
     }
 
-    // optional - implement other methods defined in PMA\libraries\plugins\ExportPlugin.class.php:
+    // optional - implement other methods defined in ExportPlugin.class.php:
     //  - exportRoutines()
     //  - exportStructure()
     //  - getTableDefStandIn()
@@ -203,7 +222,7 @@ class Export[Name] extends PMA\libraries\plugins\ExportPlugin
     // optional - implement other private methods in order to avoid
     // having huge methods or avoid duplicate code. Make use of them
     // as well as of the getters and setters declared both here
-    // and in the PMA\libraries\plugins\ExportPlugin class
+    // and in the ExportPlugin class
 
 
     // optional:

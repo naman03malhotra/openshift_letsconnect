@@ -1,235 +1,466 @@
 phpMyAdmin - ChangeLog
 ======================
 
-4.7.4 (2017-08-23)
-- issue #13415 Remove shadow from the logo
-- issue #13507 Fixed per server theme feature
-- issue #13523 Missing newline in ALTER exports
-- issue #13414 Fixed several compatibility issues with PHP 7.2
-- issue #13550 Fixed copy results to clipboard
-- issue #13562 Add limitation for user group length
-- issue #13561 Fixed edit variable link in advisor
-- issue #13579 Optimize table link should not be visible in print page
-- issue #13553 Improved error handling on corrupted tables
-- issue #13512 Fixed rendering of add index dialog
-- issue #13606 Fixed refreshing server variables
-
-4.7.3 (2017-07-20)
-- issue #13447 Large multi-line query removes Export operation and blanks query box options
-- issue #13445 Fixed rendering of query results
-- issue #13437 Fixed version check when not connected to a database
-- issue #13465 Fixed creating relation
-- issue #13475 Fixed export without backquotes
-- issue #13482 Improved handling of uploaded files with open_basedir
-- issue #13387 Fixed inline editing of hex values
-- issue #13382 Fixed size of index edit dialog
-- issue #13489 Fixed rendering SQL lint errors
-- issue #13468 Avoid breakage if set_time_limit is disabled
-- issue #13471 Fail if ini_set/ini_get are disabled
-- issue #13436 Automatically connect using SSL when server is configured so
-- issue #13478 Fixed usage of some browser transformations
-
-4.7.2 (2017-06-29)
-- issue #13314 Make theme selection keep current server
-- issue #13311 Fixed direct login for accounts without password
-- issue #13316 Fixed check for mbstring.func_overload
-- issue #13323 Fixed wrong encoding of table at triggers
-- issue #12976 Fixed natural sorting in several places
-- issue #12718 Show warning for users removed from mysql.user table
-- issue #13362 Fixed loading additional javascripts
-- issue #13343 Fixed editing QBE
-- issue #13193 Improved documentation on user settings
-- issue #13092 Gracefully handle early fatal errors in AJAX requests
-- issue #13327 Fixed Incorrect NavigationTreeEnableExpansion default value in the documentation
-- issue #13008 Fixed export of database with a lot of tables
-- issue #13318 Improved performance when importing with enabled tracking
-- issue #13386 Avoid PHP errors with non existing configuration on OS X
-- issue #13388 Show only supported charsets for conversion
-- issue #13392 Fixed operation with session.auto_start enabled
-- issue #13383 "Create PHP code" is broken
-- issue #13189 Fixed links to resume timeouted import
-
-4.7.1 (2017-05-25)
-- issue #13132 Always execute tracking queries as controluser
-- issue #13125 Focus on SQL editor after inserting field name
-- issue #13133 Fixed broken links in setup
-- issue #13135 Database list Tooltips: Show wrong value
-- issue #13150 Fixed pagination while browsing resuls
-- issue #13149 Fixed outbound links in changelog.php
-- issue #13146 Do not include devel dependencies in the release
-- issue #13144 Do not show New as a database in database dropdown
-- issue #13130 Fixed handling of errors in AJAX requests
-- issue #13152 Fixed PHP error in case of invalid table preferences
-- issue #13154 Fixed PHP error on password change
-- issue #13219 Fix Refresh of Process List
-- issue #13182 Fix refresh of long queries
-- issue #12301 Improved handling of logout with disabled LoginCookieDeleteAll
-- issue #13216 Add support for MySQL 8.0 collations
-- issue #13218 Fixed rendering of phpMyAdmin logos
-- issue #13234 Properly report not working sessions
-- issue #13256 Fixed password check on server replication
-- issue #13252 Fixed grid editing time column
-- issue #13258 Fixed detection of Amazon RDS
-- issue #13241 Redirect user to last page that has any tables to display
-- issue #13266 Fix link to User accounts overview page
-- issue #13274 Fix error in query builder
-- issue #13177 Grid editing repeats action after error
-
-4.7.0 (2017-03-28)
-- patch #12233 [Display] Improve message when renaming database to same name
-- issue #6146  Log authentication attempts to syslog
-- issue #11981 Remove support for Swekey authentication
-- issue #11987 Remove code for no longer supported MSIE versions
-+ issue #11962 Remove embedded PHP libraries, use composer to install them
-+ issue #12017 Cannot easily select multiple tables when exporting
-+ issue #12047 Add javascript filtering for databases
-- issue #12166 More compact rendering of navigation tree
-+ issue #12129 Improve performance with SkipLockedTables
-- issue #12173 Do not hide indexes under a slider
-- issue        Improve performance of zip file import
-- issue #12196 Removed $cfg['ThemePath']
-- issue #6274  Add support for export user settings as config.inc.php snippet
-- issue #5555  Better report query errors while generating SQL exports
-- issue #12307 Produce valid JSON on export
-- issue #12325 Setup script icons broken
-- issue #12378 Support IPv6 proxies
-- issue        Removed MySQL connection retry without password
-- issue #12218 Allow to specify further parameters for control connection
-- issue #12162 Show charset for each table on Database structure page
-- issue #12463 Incorrect link in the href of icon at Hide/Show unhide links
-- issue #12330 Shortcut for closing console
-- issue #12465 Improved handling of http requests
-- issue #12474 Broken links in Setup forms Navigation
-- issue #12494 Can't add a new User
-- issue #12523 Add 'token' Parameter in all POST requests (Fix 'Token mismatch' errors)
-- issue #12302 Improved usage of number_format
-- issue #12656 Server selection not working
-- issue #12543 NULL results in dataset are colored grey
-- issue #12664 Create Bookmark broken
-- issue #12688 Use unsigned int for storing bookmark ID
-- issue #12352 Added password strength indicator
-- issue #12713 Correctly handle HTTP status when doing requests
-- issue #12247 Add option to delete settings from browser storage
-- issue #12783 Remove unused PMA_addJSCode function
-- issue #12069 Add table filtering to database structure
-- issue #12799 Allow to configure signon session parameters
-- issue #12854 Drop database is broken
-- issue #12863 Can't toggle Event Scheduler on
-- issue #12742 Finish removing dead code references to xls/xlsx import and export, which was removed some time ago.
-- issue #12536 Rename "Relations" to "Relationships" in many places as it's the more proper term
-- issue #12834 Fixed margins in central columns feature
-- issue #12903 Document more export configuration options
-- issue #12897 Use consistent numeric format for table overhead
-- issue #12901 Use server returned table name on renaming table
-- issue #12918 Always use \r\n as newline when editing fields
-- issue #12923 Fixed server side search in navigation panel
-- issue #12929 Undefined index warning with ssl_ca_paths
-- issue #12924 Do not show errors from OpenSSL cookie encryption/decryption
-- issue #12945 Fixed hint rendering on adding new user
-- issue #12941 Fixed sorting of tables in relation view
-- issue #12936 Fixed tables pagination in navigation panel
-- issue #12904 Do not collapse add form for central columns if there are none
-- issue #12955 Fixed database renaming
-- issue #12954 Fixed export of tracking data
-- issue #12960 Enclose exports in transaction by default
-- issue #12966 After adding a column ADD INDEX option won't be displayed when enabling AI
-- issue #12972 Better error message when Composer has not been run
-- issue #12988 Do not show language selector without choices
-- issue #12993 Fixed external links to php documentation
-- issue #12990 Fixed error when loading favorite tables to console
-- issue #12981 Improved rendering of new version information
-- issue #12922 Fixed bookmarks ordering
-- issue #12964 Fixed table search in navigation
-- issue #12985 Fixed rendering of foreign key browsing
-- issue #12957 Fixed manipulation with GIS data having zero coordinates
-- issue #12804 Fixed various designer javascript errors
-- issue #12934 Fixed possible javascript error on server status page
-- issue #12927 Fixed javascript error on 3NF normalization
-- issue #12996 List all databses in navigation panel database dropdown
-- issue #12980 Better defaults when creating multi field foreign key
-- issue #12976 Improved foreign key editor behavior
-- issue #12958 Always show error reporting dialog on top
-- issue #12693 Improved support for TokuDB
-- issue #11231 Try harder to honor LoginCookieValidity setting
-- issue #13016 and #13017 Slight improvements to the table layout of Relation view
-- issue #12345 Correctly show affected rows for LOAD DATA queries
-- issue #13010 Copy database: SQL error for copying PMADB metadata
-- issue #13002 Fixed OpenDocument exports
-- issue #13000 Align NULL values according to the column alignment
-- issue #13021 Show phpMyAdmin errors even with error_reporting set to 0
-- issue #13020 Removed warning about client and server versions mismatch
-- issue        Hide comments on table Structure tab when no comment is set
-- issue        Fixed submission of error reports
-- issue #13033 Use Referrer-Policy header to specify referrer policy
-- issue        Fixed javascript confirmation of dangerous queries
-- issue #13040 Compatibility with hhvm 3.18
-- issue #13031 Fixed displaying of all rows
-- issue #12967 Fixed related field selection for native relations
-- issue #13045 Properly escape MIME transformatoin names
-- issue #13028 Always show 100% in font selector
-- issue #13047 Fix query simulating for more servers
-- issue #12846 Fix new version check for sites with wrongly configured curl
-- issue #12951 When exporting to Excel, the default is now to include column names in the first row
-- issue #13059 Removed debugging code
-- issue #13029 Fixed table tracking for nested table groups
-- issue #13053 Fixed broken links in setup
-- issue #12708 Removed phpMyAdmin version from User-Agent header
-- issue #13084 Do not point users to setup when it is disabled
-- issue #12660 Delete only phpMyAdmin cookies on upgrade
-- issue #13088 Fixed editing of rows with text primary key
-- issue #13092 Do not try to sync favorite tables if configuration storage is not enabled
-- issue #13105 Fixed changing attribute for virtual field
-- issue #12757 Fixed setting password on recent MariaDB with non working plugins
-- issue #12349 Fixed undefined variable on import from some formats
-- issue #13103 Do not offer default names for copying/renaming databases
+4.0.10.20 (2017-03-28)
+- issue #12881 Fix database search when locale is not 'en'
 - issue        [security] Possible to bypass $cfg['Servers'][$i]['AllowNoPassword'], see PMASA-2017-08
 
-4.6.6 (2017-01-23)
-- issue #12759 Fix Notice regarding 'Undefined index: old_usergroup'
-- issue #12760 Fix Notice regarding 'Undefined index: users'
-- issue #12762 Fixed parsing of SQL with BINARY function
-- issue #12588 ReCaptcha now works without allow_url_fopen
-- issue #12699 Show no local storage warning only on settings tab
-- issue #12778 Syntax Error in Adding/Changing TIMESTAMP columns with default value as NULL
-- issue #12769 Edit/Export links are not clickable under Routines tab
-- issue #12757 Fixed creating new user with older MariaDB
-- issue #12784 Remove ctype installation suggestion
-- issue #12780 Format button replaces all text with blank spaces
-- issue #12786 Fixed database searching
-- issue #12792 Fixed javascript error on new version link
-- issue #12785 Add information about required and suggested extensions to composer.json
-- issue #12801 Custom header shown twice with cookie login form
-- issue #12802 Custom footer not shown with auth_type http login failure
-- issue #12434 Improve documentation for servers running with Suhosin
-- issue #12800 Updated embedded phpSecLib to 2.0.4
-- issue #12800 Fixed various issues with PHP 7.1
-- issue #11816 Fixed operation with lower_case_table_names=2
-- issue #12813 Fixed stored procedure execution
-- issue #12826 Honor user configured connection collation
-- issue #12293 Correctly report OpenSSL errors from cookie encryption
-- issue #12814 DateTime won't allow to input length in Routine editor
-- issue #12840 Fix Notice regarding 'Undefined index: row_format' when altering table options
-- issue #12841 Fixed moving of columns with whitespace in name
-- issue #12847 Fixed editing of virtual columns
-- issue #12859 Changed WHERE condition to 0 instead of 1 for SQL query window to avoid accidents
-- issue #12872 Use same query for display and execution when dropping index
-- issue #12868 Fix check for user groups freatures being enabled
-- issue #12876 Fix notices and warning related to dbs_to_test global
-- issue #12831 Fix table formatting on Insert tab, which mostly affected row highlighting
-- issue #12495 Reintroduced phpinfo page with limited capabilities
-- issue #12861 Fix renaming tables with lower_case_table_names=2
-- issue #12876 Fix possible PHP error in navigation
-- issue #12881 Fix database search with newer php-gettext
-- issue #12894 Fix linter error on unterminated variable name
-- issue #12732 Fixed filtering for active processes
+4.0.10.19 (2017-01-23)
 - issue        [security] Multiple vulnerabilities in setup script, see PMASA-2016-44.
 - issue        [security] Open redirect, see PMASA-2017-1.
 - issue        [security] php-gettext code execution, see PMASA-2017-2.
 - issue        [security] DOS vulnerabiltiy in table editing, see PMASA-2017-3.
 - issue        [security] CSS injection in themes, see PMASA-2017-4.
-- issue        [security] Cookie attribute injection attack, see PMASA-2017-5.
 - issue        [security] SSRF in replication, see PMASA-2017-6.
 - issue        [security] DOS in replication status, see PMASA-2017-7.
+
+4.0.10.18 (2016-11-24)
+- issue #12485 Do not show warning about short blowfish_secret if none is set
+- issue        [security] Open redirection issue, see PMASA-2016-57
+- issue        [security] Unsafe generation of $cfg['blowfish_secret'], see PMASA-2016-58
+- issue        [security] phpMyAdmin's phpinfo functionality is removed, see PMASA-2016-59
+- issue        [security] AllowRoot and allow/deny rule bypass with specially-crafted username, see PMASA-2016-60
+- issue        [security] Username matching weaknesses with allow/deny rules, see PMASA-2016-61
+- issue        [security] Full path disclosure (FPD) weaknesses, see PMASA-2016-63
+- issue        [security] Multiple cross-site scripting (XSS) weaknesses, see PMASA-2016-64
+- issue        [security] Multiple denial-of-service (DOS) vulnerabilities, see PMASA-2016-65
+- issue        [security] Possible to bypass white-list protection for URL redirection, see PMASA-2016-66
+- issue        [security] Multiple SQL injection vulnerabilities, see PMASA-2016-69
+- issue        [security] Incorrect serialized string parsing, see PMASA-2016-70
+- issue        [security] CSRF token not stripped from the URL, see PMASA-2016-71
+
+4.0.10.17 (2016-08-16)
+- issue        [security] Weaknesses with cookie encryption, see PMASA-2016-29
+- issue        [security] Improve session cookie code for openid.php and signon.php example files
+- issue        [security] Full path disclosure in openid.php and signon.php example files
+- issue        [security] Multiple XSS vulnerabilities, see PMASA-2016-30
+- issue        [security] Unsafe generation of BlowfishSecret (when not supplied by the user)
+- issue        [security] Referrer leak when phpinfo is enabled
+- issue        [security] PHP code injection, see PMASA-2016-32
+- issue        [security] Full path disclosure, see PMASA-2016-33
+- issue        [security] SQL injection attack, see PMASA-2016-34
+- issue        [security] Local file exposure through LOAD DATA LOCAL INFILE, see PMASA-2016-35
+- issue        [security] Local file exposure through symlinks with UploadDir, see PMASA-2016-36
+- issue        [security] Path traversal with SaveDir and UploadDir, see PMASA-2016-37
+- issue        [security] Denial-of-service attack through transformation feature, see PMASA-2016-41
+- issue        [security] SQL injection vulnerability as control user, see PMASA-2016-42
+- issue        [security] Verify data before unserializing, see PMASA-2016-43
+- issue        [security] Use HTTPS for wiki links
+- issue        Remove Swekey support
+- issue        [security] Denial-of-service attack with $cfg['AllowArbitraryServer'] = true and persistent connections, see PMASA-2016-45
+- issue        [security] Improve SSL certificate handling
+- issue        [security] Fix full path disclosure in debugging code
+- issue        [security] Possible circumvention of IP-based allow/deny rules with IPv6 and proxy server, see PMASA-2016-47
+- issue        [security] Detect if user is logged in, see PMASA-2016-48
+- issue        [security] Bypass URL redirection protection, see PMASA-2016-49
+- issue        [security] Referrer leak, see PMASA-2016-50
+- issue        [security] Reflected File Download, see PMASA-2016-51
+- issue        [security] ArbitraryServerRegexp bypass, see PMASA-2016-52
+- issue        [security] Denial-of-service attack by entering long password, see PMASA-2016-53
+- issue        [security] Remote code execution vulnerability when running as CGI, see PMASA-2016-54
+- issue        [security] Denial-of-service attack when PHP uses dbase extension, see PMASA-2016-55
+- issue        [security] Remove tode execution vulnerability when PHP uses dbase extension, see PMASA-2016-56
+- issue        [security] Denial-of-service attack by using for loops, see PMASA-2016-46
+
+4.0.10.16 (2016-06-23)
+- issue        [security] User SQL queries can be revealed through URL GET parameters, see PMASA-2016-14
+- issue        [security] Limit list of sites which can be passwd through url.php.
+- issue        [security] BBCode injection in setup script, see PMASA-2016-17
+- issue        [security] DOS attack vulnerability, see PMASA-2016-22
+- issue        [security] Multiple full path disclosure vulnerabilities, see PMASA-2016-26
+- issue        [security] XSS attack when checking database privileges, see PMASA-2016-21
+- issue        [security] XSS attack when MySQL server is using a specific payload log_bin directive, see PMASA-2016-26
+- issue        [security] XSS vulnerabilities in Transformation feature, PMASA-2016-28
+
+4.0.10.15 (2016-02-29)
+- issue        [security] Multiple XSS vulnerabilities, see PMASA-2016-11.
+
+4.0.10.14 (2016-01-29)
+- issue #11891 Error with PMA 4.0.10.13 with PHP 5.2
+
+4.0.10.13 (2016-01-28)
+- issue        [Security] Multiple full path disclosure vulnerabilities, see PMASA-2016-1
+- issue        [Security] Unsafe generation of CSRF token, see PMASA-2016-2
+- issue        [Security] Multiple XSS vulnerabilities, see PMASA-2016-3
+- issue        [Security] Insecure password generation in JavaScript, see PMASA-2016-4
+- issue        [Security] Unsafe comparison of CSRF token, see PMASA-2016-5
+
+4.0.10.12 (2015-12-25)
+- issue        [Security] Path disclosure, see PMASA-2015-6
+
+4.0.10.11 (2015-09-23)
+- issue #11464 phpMyAdmin suggests upgrading to newer version not usable on that system
+
+4.0.10.10 (2015-05-13)
+- bug #4899 [security] CSRF vulnerability in setup
+- bug #4900 [security] Vulnerability allowing Man-in-the-middle attack
+
+4.0.10.9 (2015-03-04)
+- bug       [security] Risk of BREACH attack, see PMASA-2015-1
+
+4.0.10.8 (2015-01-07)
+- rfe #1588 recursive function too deep - operator change suggestion 
+- rfe #1589 support early versions of PHP5.2 (register_shutdown_function)
+
+4.0.10.7 (2014-12-03)
+- bug #4611 [security] DOS attack with long passwords
+
+4.0.10.6 (2014-11-20)
+- bug #4578 [security] XSS vulnerability in table print view
+- bug #4579 [security] XSS vulnerability in zoom search page
+- bug #4594 [security] Path traversal in file inclusion of GIS factory
+- bug #4598 [security] XSS in multi submit
+- bug #4597 [security] XSS through pma_fontsize cookie
+
+4.0.10.5 (2014-10-21)
+- bug #4562 [security] XSS in debug SQL output
+- bug #4563 [security] XSS in monitor query analyzer
+
+4.0.10.4 (2014-10-01)
+- bug #4544 [security] XSS vulnerabilities in table search and table structure pages
+
+4.0.10.3 (2014-09-13)
+- bug #4530 [security] DOM based XSS that results to a CSRF that creates a
+            ROOT account in certain conditions
+
+4.0.10.2 (2014-08-17)
+- bug #4501 [security] XSS in table browse page
+- bug #4502 [security] Self-XSS in enum value editor
+- bug #4503 [security] Self-XSSes in monitor
+- bug #4504 [security] Self-XSS in query charts
+- bug #4517 [security] XSS in relation view
+
+4.0.10.1 (2014-07-17)
+- bug #4488 [security] XSS injection due to unescaped table name (triggers)
+- bug #4492 [security] XSS in AJAX confirmation messages 
+
+4.0.10.0 (2013-12-04)
+- bug #4150 Clicking database name in query window opens a new tab
+- bug #4141 Wrong page is shown after editing; also, do not show a modal
+            dialog for multi-row edit
+- bug #3939 PHP NavigationTree error when paging through list
+- bug #4075 Support A10 Networks load balancer
+- bug #4083 row deleting isn't binlogs friendly
+- bug #4163 Setup script does not recognize manually-configured server
+- bug #4158 Events page says no privileges with ALL PRIVILEGES
+
+4.0.9.0 (2013-11-04)
+- bug #4104 Can't edit updatable view when searching
+- bug #4108 Missing refresh by deleting databases
+- bug #3995 Drizzle server charset notice
+- bug #3911 Filtering database names includes empty groupings
+- bug #3678 Does not display or manipulate bit(64) fields appropriately
+- bug #4129 Unneeded navi panel refresh
+- bug #4120 SSL redirects to port 80
+- bug #4144 DROP DATABASE displays wrong database name
+- bug #4059 Running delete query asks for confirmation but says it was already executed
+- bug #4147 Accessibility: Images without Alt nor title attribute 
+
+4.0.8.0 (2013-10-06)
+- bug #3988 Rename view is not working
+- bug #4041 Interaction between linkified fields and grid editing
+- bug #3975 Table grouping isn't implemented properly
+- bug #4060 Browser tries to remember wrong password when creating new user
+- bug #4002 Edit Index on big table doesn't show "Loading" or any message
+- bug #4098 Default table tab is ignored
+- bug #4099 Server/library difference warning: setting is ignored
+- bug #4100 table tree group strategy
+- bug #4102 ALTER TABLE ORDER BY and InnoDB
+- bug #4103 Tracking report: cannot delete a statement
+- bug #3996 Drizzle navigation doesn't expand
+- bug #4074 GIS column editor: point not displayed
+- bug #4109 Drizzle tables in navigation are shown as views
+- bug #4095 NUL symbols added to the end of database dump file
+- bug #4105 More disappears in table Structure
+- bug #3992 Multi-row edit doesn't clear values when checking NULL
+
+4.0.7.0 (2013-09-23)
+- bug #3993 Sorting in database overview with statistics doesn't work
+- bug Handle the situation where PHP_SELF is not set
+- bug #4080 Overwrite existing file not obeyed
+- bug #3929 Database-specific privileges are not copied when cloning user
+- bug #3997 Error handling in case MySQL extension is missing
+- bug #4089 Moving Columns will alter column definition
+- bug #4091 Insert ignore option does not work
+- bug #4090 Downloading BLOB downloads page template
+- bug #4092 Clicking on table name in view of information_schema redirects to wrong page
+- bug #4079 Copy Table Add AUTO_INCREMENT value checkbox not working
+- bug #4088 MySQL server version at index.php incorrect w/ controlhost
+- bug #4001 Import error: Class 'ImportOds' not found
+- bug #3986 Missing DROP VIEW button
+
+4.0.6.0 (2013-09-05)
+- bug #4036 Call to undefined function mb_detect_encoding (clarify the doc)
+- bug Missing hints when changing a column's structure
+- bug #4048 Cannot select foreign value in Search
+- bug #4025 gzip export is not actually compressed with mod_deflate
+- bug #4054 query analysis doesn't launch in status monitor
++ Add pmahomme icon credits (FamFamFam silk icon set)
+- bug #4064 Table structure statistics "Space usage" caption too small for l10n
+- bug #4051 Wrong tabindex when inserting rows
+- bug #4066 varchar field not truncated in table browse mode
++ rfe #1435 Opening database should expand it in the navigation menu
+- (performance) Removed ShowTooltip directive
+- bug #4046 Exporting huge Tables causes memory-Problems
+
+4.0.5.0 (2013-08-04)
+- bug #3977 Not detected configuration storage
+- bug #3970 Pressing enter in the filter field reloads page
+- bug #3984 Cannot insert in this table (PHP < 5.4)
+- bug #3989 Reloading privileges does not update the interface
+- bug #3960 NavigationBarIconic config not honored
+- bug #3985 Call to undefined function mb_detect_encoding
+- bug #4007 Analyze option not shown for InnoDB tables
+- bug #4015 Forcing a storage engine for configuration storage
+- bug Incorrect Drizzle 7 detection
+- bug #4019 Create database if not exists (export): add an option to the
+  interface to enable generating CREATE DATABASE and USE (false by default)
+- bug #4012 Crash on CSV file import
+- bug #4009 Statistic Monitor shows only last 3 digits in graph
+- bug #3998 Non-permanent SQL history not working
+- bug #3578 Transformations for text/plain on a BLOB column
+- [security] Improved protection against cross framing, see PMASA-2013-10
++ Reinstated configuration directive: AllowThirdPartyFraming
+
+4.0.4.2 (2013-07-28)
+- [security] fix unescaped parameter, see PMASA-2013-8
+- [security] Fix stored XSS in Server status monitor, see PMASA-2013-9
+- [security] Fix stored XSS in navigation panel logo link, see PMASA-2013-9
+- [security] Fix self-XSS in setup, trusted proxies validation, see PMASA-2013-9
+- [security] Fix full path disclosure, see PMASA-2013-12
+- [security] Fix control user SQL injection in pmd_pdf.php, see PMASA-2013-15
+- [security] Fix control user SQL injection in schema_export.php, see PMASA-2013-15
+- [security] Fix self-XSS in schema export, see PMASA-2013-14
+- [security] Fix unencoded json object, see PMASA-2013-11
+- [security] Fix stored XSS in link transformation plugin, see PMASA-2013-13
+
+4.0.4.1 (2013-06-30)
+- [security] Global variables scope injection vulnerability (see PMASA-2013-7)
+
+4.0.4.0 (2013-06-17)
+- bug #3959 Using DefaultTabDatabase in NavigationTree for Database Click
+- bug #3961 Avoid Suhosin warning when in simulation mode
+- bug #3897 Row Statistics and Space usage bugs
+- bug #3966 Only display "table has no unique column" message when applicable
+- bug #3965 Default language wrong with zh-TW
+- bug #3921 Call to undefined function PMA_isSuperuser() if default server is
+not set 
+- bug #3971 Ctrl/shift + click opens links in same window
+- bug #3964 Import using https does not work
+- bug Missing removeCRLF option in ExportCsv and ExportExcel plugins
+- bug #3631 Drop not working Visio schema export.
+- bug #3645 Better handling of invalid ODS documents
+- bug #3976 Number of pages
+- bug #3922 User privileges, database name unescaped
+
+4.0.3.0 (2013-06-05)
+- bug #3941 Recent tables list always empty
+- bug #3933 Do not translate "Open Document" in export settings
+- bug #3927 List of tables is missing after expanding in the navigation frame
+- bug #3942 Warnings about reserved word for many non reserved words
+- bug #3912 Exporting row selection, resulted by ORDER BY query
+- bug #3957 Cookies must be enabled past this point
+- bug #3956 "Browse foreign values" search filter / page selector not working
+- bug #3579 NOW() function incorrectly selected (partial regression)
+- [security] Javascript execution vulnerability in Create view,
+  reported by Maxim Rupp (see PMASA-2013-6)
+
+4.0.2.0 (2013-05-24)
+- bug #3902 Cannot browse when table name contains keyword "call"
++ center loading indicator for navigation refresh, related to bug #3920
+- bug #3925 Table sorting in navigation panel is case-sensitive
+- bug #3915 Import of CSV file (Replace table data with file) with duplicate values
+- bug #3907 undefined variables, function parameter problems
+- bug #3898 Structure not refreshed after column drop 
+- bug #3926 View is not updatable
+- bug #3919 PropertiesIconic not honored
+- bug #3930 Databases to choose for specific privileges show up escaped
+- bug #3910 Export database with empty table as a php array, does not produce valid PHP
+- bug #3936 Query profiler chart not loading from SQL Query page
+- bug #3946 Missing CSV import option "Do not abort on INSERT error"
+- bug #3943 Missing Operations>Table options>AUTO_INCREMENT
+- bug Missing CREATE DATABASE statement when exporting at database level
+- bug #3924 Show warning when CSV file does not contain data for all columns
+- bug #3947 Missing Sql Query after modify structure
+- bug #3948 Server export problems
+- bug #3917 CountTables directive is deprecated
+
+4.0.1.0 (2013-05-14)
+- bug #3879 Import broken for CSV using LOAD DATA
+- bug #3889 When login fails and error display is active, login data is displayed
+- bug #3890 [import] Web server upload directory import fails
+- bug #3891 [import] Server upload folder import file name missing in success message 
++ rfe #1421 [auth] Add retry button on connection failure with config auth
+- bug #3894 [interface] Provide feedback if no columns selected for multi-submit
+- bug #3799 [interface] Incorrect select field change on ctrl key navigation in Firefox
+- bug #3885 [browse] display_binary_as_hex option causes unexpected behavior
+- bug #3899 Git commit links to Github missing
+- bug #3900 CSP WARN in Firefox console
+- bug #3901 Setup script warning for config auth (stored login data) shows link BBcode
+- bug #3895 [browse] Fixed getting BLOB data
+- bug #3905 [export] Custom Exporting exports all databases
+- bug #3909 [import] Import of CSV FIle to selected table doesn't work
+- bug #3904 Browsing an empty table should not display its Structure
+- bug #3908 Calendar widget improperly redirects to home 
+- bug #3918 Greyed out tabs when there are no rows fixed 
+- bug #3916 [interface] Missing scrollbar (original theme)
++ [vendor] add tcpdf path to vendor_config.php
+- bug fix compat with tcpdf >= 6.0 (tested with 6.0.012)
+
+4.0.0.0 (2013-05-03)
++ Patch #3481047 for rfe #3480477 Insert as new row enhancement
++ Patch #3480999 Activate codemirror in the query window
+- Patch #3495284 XML Import - fix message and redirect
++ rfe #3484063 Null checkbox behavior
++ Patch #3497179 Contest-5: Add user: Allow create DB w/same name + grant u_%
++ Patch #3498201 Contest-6: Export all privileges
++ Patch #3502814 for rfe #3187077 Change password buttons should match
++ rfe #3488640 Expand table-group in non-light navigation frame if only one
++ Patch #3509360 Contest-3: Option "Truncate table" before "insert"
++ Patch #3506552 Contest-2: Show index information in the data dictionary
++ Patch #3510656 Contest-1: Ignoring foreign keys while dropping tables
+- Bug #3509686 Reverting sort on joined column does not work
++ New transformation: append string
++ rfe #3507804 Session upload progress (PHP 5.4)
++ rfe #3488185 draggable columns vs copy column name
++ Patch #3507001 Contest-4: Textarea for large character columns
++ Removed the PHP version of the ENUM editor
++ Patch #3507111 Display distinct results, linked to corresponding data rows
+- bug #3507917 [export] JSON has unescaped values for allegedly numeric columns
++ rfe #3516187 show tables creation, last update, last check timestamps in db_structure
+- bug #3059806 Supporting running from CIFS/Samba shares
+- bug #3516341 [export] Open Document Text, Word and Texy! Text show table structure twice
+- bug [export] Texy! Text: Columns containing Pipe Character don't export properly
++ [export] Show triggers in Open Document Text, Word and Texy! Text
+- Patch #3415061 [auth] Login screen appears under the page
++ rfe #3517354 [interface] Allow disabling CodeMirror with $cfg['CodemirrorEnable'] = false
++ rfe #3475567 [interface] New directive $cfg['HideStructureActions']
+- bug #3468272 [import] Fixed import of ODS with more paragraphs in a cell
+- bug #3510196 [core] Improved redirecting with ForceSSL option
++ rfe #3518852 [edit] edit blob but not other binary, new option $cfg['ProtectBinary'] = 'noblob'
++ Hide language select box if there are no locales installed
++ Removed some directives: verbose_check, SuggestDBName, LightTabs,
+VerboseMultiSubmit, ReplaceHelpImg
+- Patch #3500882 Fixing checkbox behaviour while editing identical rows
++ rfe #3441722 [interface] Display description of datatypes
++ rfe #3517835 [structure] Move columns easily
++ Ajaxified "Create View" functionality
++ [import] New plugin: import mediawiki
++ New navigation system
++ Discontinued the use of a frame-based layout
++ rfe #3528994 [interface] Allow wrapping possibly long values in replication-status table
++ [interface] Autoselect username input on cookie login page
+- bug #3563799 [interface] Grid editing destroying huge amount of data
++ [import] Remove support for the unactive docSQL import format
+- bug #3577443 [edit] "Browse foreign values" does not show on ajax edit
++ rfe #3522109 [browse] Grid editing: action to trigger it (or disable)
+- bug #3526598 [interface] SQL query not shown when creating table
++ Dropped configuration directive: AllowThirdPartyFraming
++ Dropped configuration directive: LeftFrameLight
++ Dropped configuration directive: DisplayDatabasesList
++ Dropped configuration directives: ShowTooltipAliasDB and ShowTooltipAliasTB
++ Dropped configuration directive: NaviDatabaseNameColor
++ Added configuration directive: MaxNavigationItems
++ Renamed configuration directive: LeftFrameDBTree => NavigationTreeEnableGrouping
++ Renamed configuration directive: LeftFrameDBSeparator => NavigationTreeDbSeparator
++ Renamed configuration directive: LeftFrameTableSeparator => NavigationTreeTableSeparator
++ Renamed configuration directive: LeftFrameTableLevel => NavigationTreeTableLevel
++ Renamed configuration directive: LeftPointerEnable => NavigationTreePointerEnable
++ Renamed configuration directive: LeftDefaultTabTable => NavigationTreeDefaultTabTable
++ Renamed configuration directive: LeftDisplayTableFilterMinimum => NavigationTreeDisplayTableFilterMinimum
++ Renamed configuration directive: LeftDisplayLogo => NavigationDisplayLogo
++ Renamed configuration directive: LeftLogoLink => NavigationLogoLink
++ Renamed configuration directive: LeftLogoLinkWindow => NavigationLogoLinkWindow
++ Renamed configuration directive: LeftDisplayServers => NavigationDisplayServers
++ Renamed configuration directive: LeftRecentTable => NumRecentTables
++ Renamed configuration directive: LeftDisplayDatabaseFilterMinimum => NavigationTreeDisplayDbFilterMinimum
++ Removed the "Mark row on click" feature; must now click the checkbox to mark
++ Removed the "Synchronize" feature
++ Improved layout of server variables page
++ rfe #1052091 [config] Double-underscores in PMA table names
++ Improved the "More" dropdown on the table structure page
++ [interface] Added "scroll to top" link in menubar
++ [designer] Fullscreen mode for the designer
++ Upgraded jquery to v1.8.3 and jquery-ui to v1.9.2
++ Patch #3597529 [status] Add raw value as title on server status page
++ Support MySQL 5.6 partitioning
++ Removed the AjaxEnable directive
++ rfe #3542567 Accept IPv6 ranges and IPv6 CIDR notations in $cfg['Servers'][$i]['AllowDeny']['rules']
+- Bug #3576788 Grid editing shows the value before silent truncation
+- Upgraded jqPlot to 1.0.4 r1121
+- Upgraded to jquery-ui-timepicker-addon 1.1.1
++ rfe #3599046 [interface] Added comments for indexes
+- Replaced qtip with jQuery UI tooltip
+- Upgraded CodeMirror to 2.37
+- bug #2951 [export] Correctly export decimal fields.
+- bug #3762 [core] Make Advisor work on Windows withou COM extension.
+- bug #3519 [export] Prevent infinite recursion in PDF export.
+- bug #3827 Table specific privileges not displayed for db name containing
+underscore 
+- rfe #1386 Add IF NOT EXISTS clause when copying database
+- No longer package .travis.yml configuration file when creating a release.
+- bug #3830 Can't export custom query because it lowercases table names
+- bug #3829 Enabling query profiling crashes javascript based navigation
++ rfe #879 Reserved word warning
++ Remove the database ordering sub-feature of the only_db directive
+- bug #3840 When exporting to gzip format, the data is compressed 2 times
++ rfe #1319 Permit to create index when creating foreign key
+- bug #3703 Incorrect updating of the list of users
+- bug #3853 Blowfish implementation might be broken (replace with phpseclib)
+- bug #3865 Using like operator on each backslash needs 4 backslash protection
+- bug #3860 Displayed git revision info is not set
+- bug #3871 Check referential integrity broken across databases
+- bug #3874 [export] No preselected option when exporting table
+- bug #3873 Can't copy table to target database if table exists there
+- bug #3683 Incorrect listing of records from to count
+- bug #3876 [import] PHP 5.2 - unexpected T_PAAMAYIM_NEKUDOTAYIM
+- [security] Local file inclusion vulnerability, reported by Janek Vind
+  (see PMASA-2013-4)
+- [security] Global variables overwrite in export.php, reported by Janek Vind
+  (see PMASA-2013-5)
+- bug #3892 [export] SQL Export files are empty
+
+3.5.8.2 (2013-07-28)
+- [security] Fix self-XSS in "Showing rows", see PMASA-2013-8
+- [security] Fix self-XSS in Display chart, see PMASA-2013-9
+- [security] Fix stored XSS in Server status monitor, see PMASA-2013-9
+- [security] Fix stored XSS in navigation panel logo link, see PMASA-2013-9
+- [security] Fix self-XSS in setup, trusted proxies validation, see PMASA-2013-9
++ [security] JSON content type header for version_check.php, see PMASA-2013-9
++ [security] Backport fix for jQuery issue #9521 from jQuery 1.6.3, see PMASA-2013-9
++ [security] Fix full path disclosure, see PMASA-2013-12
++ [security] Fix control user SQL injection in pmd_pdf.php, see PMASA-2013-15
++ [security] Fix control user SQL injection in schema_export.php, see PMASA-2013-15
+- [security] Fix self-XSS in schema export, see PMASA-2013-14
+- [security] Fix unencoded json object, see PMASA-2013-11
+
+3.5.8.1 (2013-04-24)
+- [security] Remote code execution (preg_replace), reported by Janek Vind
+  (see PMASA-2013-2)
+- [security] Locally Saved SQL Dump File Multiple File Extension Remote Code
+  Execution, reported by Janek Vind (see PMASA-2013-3)
+
+3.5.8.0 (2013-04-08)
+- bug #3828 MariaDB reported as MySQL
+- bug #3854 Incorrect header for Safari 6.0
+- bug #3705 Attempt to open trigger for edit gives NULL
+- Use HTML5 DOCTYPE 
+- [security] Self-XSS on GIS visualisation page, reported by Janek Vind
+- bug #3800 Incorrect keyhandler behaviour #2
+
+3.5.7.0 (2013-02-15)
+- bug #3779 [core] Problem with backslash in enum fields
+- bug #3816 Missing server_processlist.php
+- bug #3821 Safari: white page
+- Correct detection of the Chrome browser
+
+3.5.6.0 (2013-01-28)
+- bug #3593604 [status] Erroneous advisor rule
+- bug #3596070 [status] localStorage broken in server status monitor
+- bug #3598736 [routines] Editing a procedure with special characters
+- bug #3600322 [core] Visualize GIS data throws Fatal Error
+- bug #3599362 [core] Double-escaped error message
+- bug #3776 [cookies] Login without auth on second server
 
          --- Older ChangeLogs can be found on our project website ---
                      https://www.phpmyadmin.net/old-stuff/ChangeLogs/

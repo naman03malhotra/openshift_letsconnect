@@ -20,28 +20,25 @@ if (! defined('PHPMYADMIN')) {
  */
 function PMA_RTE_getFooterLinks($docu, $priv, $name)
 {
-    global $db, $table, $url_query, $ajax_class;
+    global $db, $url_query, $ajax_class;
 
-    $icon = mb_strtolower($name) . '_add.png';
+    $icon = 'b_' . strtolower($name) . '_add.png';
     $retval  = "";
     $retval .= "<!-- ADD " . $name . " FORM START -->\n";
     $retval .= "<fieldset class='left'>\n";
-    $retval .= "<legend>" . _pgettext('Create new procedure', 'New') . "</legend>\n";
+    $retval .= "    <legend>" . _pgettext('Create new procedure', 'New') . "</legend>\n";
     $retval .= "        <div class='wrap'>\n";
-    if (PMA\libraries\Util::currentUserHasPrivilege($priv, $db, $table)) {
+    if (PMA_Util::currentUserHasPrivilege($priv, $db)) {
         $retval .= "            <a {$ajax_class['add']} ";
-        $retval .= "href='db_" . mb_strtolower($name) . "s.php";
-        $retval .= "$url_query&amp;add_item=1' ";
-        $retval .= "onclick='$.datepicker.initialized = false;'>";
-        $icon = 'b_' . $icon;
-        $retval .= PMA\libraries\Util::getIcon($icon);
+        $retval .= "href='db_" . strtolower($name) . "s.php";
+        $retval .= "?$url_query&amp;add_item=1'>";
+        $retval .= PMA_Util::getIcon($icon);
         $retval .= PMA_RTE_getWord('add') . "</a>\n";
     } else {
-        $icon = 'bd_' . $icon;
-        $retval .= PMA\libraries\Util::getIcon($icon);
-        $retval .= PMA_RTE_getWord('add') . "\n";
+        $retval .= "            " . PMA_Util::getIcon($icon);
+        $retval .= PMA_RTE_getWord('no_create') . "\n";
     }
-    $retval .= "            " . PMA\libraries\Util::showMySQLDocu($docu) . "\n";
+    $retval .= "            " . PMA_Util::showMySQLDocu('SQL-Syntax', $docu) . "\n";
     $retval .= "        </div>\n";
     $retval .= "</fieldset>\n";
     $retval .= "<!-- ADD " . $name . " FORM END -->\n\n";
@@ -52,7 +49,7 @@ function PMA_RTE_getFooterLinks($docu, $priv, $name)
 /**
  * Creates a fieldset for adding a new routine, if the user has the privileges.
  *
- * @return string    HTML code with containing the footer fieldset
+ * @return string    HTML code with containing the fotter fieldset
  */
 function PMA_RTN_getFooterLinks()
 {
@@ -62,7 +59,7 @@ function PMA_RTN_getFooterLinks()
 /**
  * Creates a fieldset for adding a new trigger, if the user has the privileges.
  *
- * @return string    HTML code with containing the footer fieldset
+ * @return string    HTML code with containing the fotter fieldset
  */
 function PMA_TRI_getFooterLinks()
 {
@@ -72,7 +69,7 @@ function PMA_TRI_getFooterLinks()
 /**
  * Creates a fieldset for adding a new event, if the user has the privileges.
  *
- * @return string    HTML code with containing the footer fieldset
+ * @return string    HTML code with containing the fotter fieldset
  */
 function PMA_EVN_getFooterLinks()
 {
@@ -83,12 +80,12 @@ function PMA_EVN_getFooterLinks()
      * a form for toggling the state of the event scheduler
      */
     // Init options for the event scheduler toggle functionality
-    $es_state = $GLOBALS['dbi']->fetchValue(
+    $es_state = PMA_DBI_fetch_value(
         "SHOW GLOBAL VARIABLES LIKE 'event_scheduler'",
         0,
         1
     );
-    $es_state = mb_strtolower($es_state);
+    $es_state = strtolower($es_state);
     $options = array(
                     0 => array(
                         'label' => __('OFF'),
@@ -112,8 +109,8 @@ function PMA_EVN_getFooterLinks()
     $retval .= "        </legend>\n";
     $retval .= "        <div class='wrap'>\n";
     // show the toggle button
-    $retval .= PMA\libraries\Util::toggleButton(
-        "sql.php$url_query&amp;goto=db_events.php" . urlencode("?db=$db"),
+    $retval .= PMA_Util::toggleButton(
+        "sql.php?$url_query&amp;goto=db_events.php" . urlencode("?db=$db"),
         'sql_query',
         $options,
         'PMA_slidingMessage(data.sql_query);'
@@ -127,3 +124,4 @@ function PMA_EVN_getFooterLinks()
     return $retval;
 } // end PMA_EVN_getFooterLinks()
 
+?>

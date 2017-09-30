@@ -5,22 +5,25 @@
  *
  * @package PhpMyAdmin
  */
-use PMA\libraries\URL;
-
 if (! defined('PHPMYADMIN')) {
     exit;
 }
 
-// Check parameters
-PMA\libraries\Util::checkParameters(array('db', 'table'));
+/**
+ * Gets some core libraries
+ */
+require_once './libraries/bookmark.lib.php';
 
-$db_is_system_schema = $GLOBALS['dbi']->isSystemSchema($db);
+// Check parameters
+PMA_Util::checkParameters(array('db', 'table'));
+
+$db_is_information_schema = PMA_is_system_schema($db);
 
 /**
  * Set parameters for links
  * @deprecated
  */
-$url_query = URL::getCommon(array('db' => $db, 'table' => $table));
+$url_query = PMA_generate_common_url($db, $table);
 
 /**
  * Set parameters for links
@@ -32,21 +35,29 @@ $url_params['table'] = $table;
 /**
  * Defines the urls to return to in case of error in a sql statement
  */
-$err_url_0 = PMA\libraries\Util::getScriptNameForOption(
-    $GLOBALS['cfg']['DefaultTabDatabase'], 'database'
-)
-    . URL::getCommon(array('db' => $db));
-
-$err_url = PMA\libraries\Util::getScriptNameForOption(
-    $GLOBALS['cfg']['DefaultTabTable'], 'table'
-)
-    . URL::getCommon($url_params);
+$err_url_0 = $cfg['DefaultTabDatabase']
+    . PMA_generate_common_url(array('db' => $db,));
+$err_url   = $cfg['DefaultTabTable'] . PMA_generate_common_url($url_params);
 
 
 /**
  * Ensures the database and the table exist (else move to the "parent" script)
- * Skip test if we are exporting as we can't tell whether a table name is an alias (which would fail the test).
  */
-if (basename($_SERVER['PHP_SELF']) != 'tbl_export.php') {
-    require_once './libraries/db_table_exists.inc.php';
+require_once './libraries/db_table_exists.lib.php';
+
+if (PMA_Tracker::isActive()
+    && PMA_Tracker::isTracked($GLOBALS["db"], $GLOBALS["table"])
+    && ! isset($_REQUEST['submit_deactivate_now'])
+) {
+    $temp_msg = '<a href="tbl_tracking.php?' . $url_query . '">';
+    $temp_msg .= sprintf(
+        __('Tracking of %s is activated.'),
+        htmlspecialchars($GLOBALS["db"] . '.' . $GLOBALS["table"])
+    );
+    $temp_msg .= '</a>';
+
+    $msg = PMA_Message::notice($temp_msg);
+    $msg->display();
 }
+
+?>

@@ -32,6 +32,9 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^pma/.*$ pma/index.php
 
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^msd/.*$ msd/index.php
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f

@@ -4,35 +4,66 @@
  * Handles table search tab
  *
  * display table search form, create SQL query from form data
- * and call PMA_executeQueryAndSendQueryResponse() to execute it
+ * and include sql.php to execute it
  *
  * @package PhpMyAdmin
  */
-use PMA\libraries\Response;
 
 /**
  * Gets some core libraries
  */
 require_once 'libraries/common.inc.php';
-require_once 'libraries/tbl_common.inc.php';
-require_once 'libraries/tbl_info.inc.php';
+require_once 'libraries/mysql_charsets.lib.php';
+require_once 'libraries/TableSearch.class.php';
 
-use PMA\libraries\controllers\table\TableSearchController;
+$response = PMA_Response::getInstance();
+$header   = $response->getHeader();
+$scripts  = $header->getScripts();
+$scripts->addFile('makegrid.js');
+$scripts->addFile('sql.js');
+$scripts->addFile('tbl_select.js');
+$scripts->addFile('tbl_change.js');
+$scripts->addFile('jquery/jquery-ui-timepicker-addon.js');
+$scripts->addFile('gis_data_editor.js');
 
-$container = \PMA\libraries\di\Container::getDefaultContainer();
-$container->factory('PMA\libraries\controllers\table\TableSearchController');
-$container->alias(
-    'TableSearchController', 'PMA\libraries\controllers\table\TableSearchController'
+$post_params = array(
+    'ajax_request',
+    'session_max_rows'
 );
-$container->set('PMA\libraries\Response', Response::getInstance());
-$container->alias('response', 'PMA\libraries\Response');
+foreach ($post_params as $one_post_param) {
+    if (isset($_POST[$one_post_param])) {
+        $GLOBALS[$one_post_param] = $_POST[$one_post_param];
+    }
+}
 
-/* Define dependencies for the concerned controller */
-$dependency_definitions = array(
-    'searchType' => 'normal',
-    'url_query' => &$url_query
-);
+$table_search = new PMA_TableSearch($db, $table, "normal");
 
-/** @var TableSearchController $controller */
-$controller = $container->get('TableSearchController', $dependency_definitions);
-$controller->indexAction();
+/**
+ * Not selection yet required -> displays the selection form
+ */
+if (! isset($_POST['columnsToDisplay']) && ! isset($_POST['displayAllColumns'])) {
+    // Gets some core libraries
+    include_once 'libraries/tbl_common.inc.php';
+    //$err_url   = 'tbl_select.php' . $err_url;
+    $url_query .= '&amp;goto=tbl_select.php&amp;back=tbl_select.php';
+    /**
+     * Gets table's information
+     */
+    include_once 'libraries/tbl_info.inc.php';
+
+    if (! isset($goto)) {
+        $goto = $GLOBALS['cfg']['DefaultTabTable'];
+    }
+    // Defines the url to return to in case of error in the next sql statement
+    $err_url   = $goto . '?' . PMA_generate_common_url($db, $table);
+    // Displays the table search form
+    $response->addHTML($table_search->getSelectionForm($goto));
+
+} else {
+    /**
+     * Selection criteria have been submitted -> do the work
+     */
+    $sql_query = $table_search->buildSqlQuery();
+    include 'sql.php';
+}
+?>
