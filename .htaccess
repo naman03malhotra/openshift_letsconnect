@@ -28,7 +28,9 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^moksha-17/.*$ moksha-17/index.php
 
-
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^pma/.*$ pma/index.php
 
 
 RewriteEngine On
