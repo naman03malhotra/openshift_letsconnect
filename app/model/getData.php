@@ -24,7 +24,7 @@ class getData
 	{
 		//if(!isset($_SESSION['username']))
 			// $this->username = "admin58tfrzD";
-			$this->username = "naman_root_alpha";
+			$this->username = "root";
 
 		//else
 		//	$this->username = $_SESSION['username'];
