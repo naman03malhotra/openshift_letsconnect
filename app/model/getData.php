@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class getData 
+ * Class getData
  *
  * Fetch data from DB
  *
@@ -20,20 +20,26 @@ class getData
 	/**
 	 * Constructor
 	 */
-	public function __construct() 
+	public function __construct()
 	{
 		//if(!isset($_SESSION['username']))
-			$this->username = "admin58tfrzD";
+			// $this->username = "admin58tfrzD";
+			$this->username = "naman_root_alpha";
+
 		//else
 		//	$this->username = $_SESSION['username'];
 
 		//if(!isset($_SESSION['password']))
-			$this->password = "5Et_ZFEqUWg-";
+			// $this->password = "5Et_ZFEqUWg-";
+			$this->password = "naman_root_alpha";
+
 		//else
 		//	$this->password = $_SESSION['password'];
 
 		//if(!isset($_SESSION['portAndIp']))
-			$this->portAndIp = "127.13.163.2:3306";
+			// $this->portAndIp = "127.13.163.2:3306";
+			$this->portAndIp = "172.30.209.133:3306";
+
 		//else
 		//	$this->portAndIp = $_SESSION['portAndIp'];
 
@@ -43,12 +49,12 @@ class getData
 	}
 
 
-	
-	
+
+
 	public function queryToArray($username,$password,$portAndIp,$query,$db)
 	{
 		if($query!='')
-			$this->query = $query; 
+			$this->query = $query;
 		if($db!='')
 			$this->db = $db;
 		if($username!='')
@@ -60,18 +66,18 @@ class getData
 
 		$result = $this->processQuery($this->username,$this->password,$this->portAndIp,$this->query,$this->db);
 
-		
+
 		$final_result = array();
 
 		//if($result)
 		//	$final_result['res'] =TRUE;
-		
-		
+
+
 		$final_result['data'] = array();
 
-		foreach ($result as $key => $row) 
+		foreach ($result as $key => $row)
        	 		{
-       	 			
+
        	 			array_push($final_result['data'],$row);
        	 		}
        	return json_encode($final_result);
@@ -79,12 +85,12 @@ class getData
 
 
 	}
-	
-	public function processQuery($username,$password,$portAndIp,$query,$db) 
+
+	public function processQuery($username,$password,$portAndIp,$query,$db)
 	{
 		// If hashtag is not empty
 		if($query!='')
-			$this->query = $query; 
+			$this->query = $query;
 		if($db!='')
 			$this->db = $db;
 		if($username!='')
@@ -94,33 +100,33 @@ class getData
 		if($portAndIp!='')
 			$this->portAndIp = $portAndIp;
 
-		
 
-		try 
+
+		try
 		{
 
 
 		$connection = mysqli_connect($this->portAndIp,$this->username,$this->password);
 
-		
+
 		if($this->db!='')
 			{
-				mysqli_select_db($connection, $this->db); 
+				mysqli_select_db($connection, $this->db);
 				$final_result['db']=TRUE;
 			}
-		
-		return $result=mysqli_query($connection, $this->query);		
+
+		return $result=mysqli_query($connection, $this->query);
 		mysqli_close();
-			
+
 		}
-		catch (\Exception $e) 
+		catch (\Exception $e)
 		{
             // status => FALSE meaning unable to fetch, some error occured
 			$final_result['con'] = FALSE;
 			$final_result['error_msg'] = $e->getMessage();
 		}
 
-		
+
 	}
 
 
@@ -128,7 +134,7 @@ class getData
 	{
 
 		if($query!='')
-			$this->query = $query; 
+			$this->query = $query;
 		if($db!='')
 			$this->db = $db;
 		if($username!='')
@@ -153,11 +159,11 @@ class getData
 
 		if($result)
 			$final_result['res'] =TRUE;
-		
-		
-		$final_result['data'] = array();	
 
-		
+
+		$final_result['data'] = array();
+
+
 		$colName = 'Tables_in_'.$this->db;
 		while($row = mysqli_fetch_assoc($result))
     	{
@@ -167,7 +173,7 @@ class getData
        	 	//array_push($final_result['data'], $row);
 
        	 	$query = "SELECT * FROM ".$row[$colName]." where status=1 order by orderx asc";
-       	 	
+
        	 	$resultx = $this->processQuery('','','',$query);
 
        	 	while($rowx = mysqli_fetch_assoc($resultx))
@@ -176,14 +182,14 @@ class getData
        	 		array_push($final_result['data'][$row[$colName]],$rowx);
        	 		//$count++;
        	 	}
-       	 	
-       	 	
-    		
-       	 	
+
+
+
+
 	    }
 
 	    return json_encode($final_result); // return final_result
-	    
+
 	}
 
 }
@@ -192,19 +198,19 @@ class getData
  * $colName = 'Tables_in_'.$row['Database'];
        	 	$count2 = 0;
        	 	foreach($resultx as $key => $rowx)
-       	 	
+
        	 	{
        	 		$rowx['table'] = $rowx[$colName];
-       	 		
-       	 		
+
+
        	 		array_push($final_result['data'][$count], $rowx);
 
        	 		$query = 'SHOW COLUMNS from '.$rowx[$colName];
        	 		$resultx2 = $this->processQuery($this->username,$this->password,$this->portAndIp,$query,$this->db);
 
-       	 		foreach ($resultx2 as $key => $rowx2) 
+       	 		foreach ($resultx2 as $key => $rowx2)
        	 		{
-       	 			
+
        	 			array_push($final_result['data'][$count][$count2], $rowx2['Field']);
        	 		}
        	 		$count2++;
