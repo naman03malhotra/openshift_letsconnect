@@ -2,7 +2,7 @@
 /*
  Require Basic Modules
  */
-$ = jQuery = require('jquery');
+$ = require('jquery');
 
 window.jQuery = $;
 window.$ = $;

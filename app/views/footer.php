@@ -21,7 +21,7 @@
 <script src="bundle.min.js" type="text/javascript"></script>
 <script src="assets/js/sine.js" type="text/javascript"></script>
 <script src="assets/js/wow.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
@@ -54,7 +54,7 @@
 
 		new WOW().init();
 
-	})(jQuery); 
+	})(jQuery);
 
 	var waves = new SineWaves({
   el: document.getElementById('waves'),
