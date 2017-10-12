@@ -21,6 +21,7 @@
 <script src="bundle.min.js" type="text/javascript"></script>
 <script src="assets/js/sine.js" type="text/javascript"></script>
 <script src="assets/js/wow.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.js"></script>
 
 
 
@@ -43,12 +44,12 @@
 
 
 
-	var rand = 2.3; 
+	var rand = 2.3;
 	var rand_speed = rand/10;
 
 
 	(function($) {
-		"use strict"; 
+		"use strict";
 
 
 		new WOW().init();
@@ -57,21 +58,21 @@
 
 	var waves = new SineWaves({
   el: document.getElementById('waves'),
-  
+
   speed: 4,
-  
+
   width: function() {
     return $(window).width();
   },
-  
+
   height: function() {
     return $(window).height();
   },
-  
+
   ease: 'SineInOut',
-  
+
   wavesWidth: '700%',
-  
+
  waves: [
 		{
 			timeModifier: 1+rand_speed,
@@ -87,20 +88,20 @@
 		}
 
 		],
- 
+
   // Called on window resize
   resizeEvent: function() {
     var gradient = this.ctx.createLinearGradient(0, 0, this.width, 0);
     gradient.addColorStop(0,"rgba(23, 210, 168, 0.2)");
     gradient.addColorStop(1,"rgba(255, 255, 255, 0.5)");
     gradient.addColorStop(0,"rgba(23, 210, 168, 0.2)");
-    
+
     var index = -1;
     var length = this.waves.length;
 	  while(++index < length){
       this.waves[index].strokeStyle = gradient;
     }
-    
+
     // Clean Up
     index = void 0;
     length = void 0;
@@ -109,7 +110,7 @@
 });
 
 
-	$(window).on('load', function() { 
+	$(window).on('load', function() {
 		$(".cssload-body").animate({ marginLeft: "200%"} , 1000);
 		setTimeout(function() {
 			$(".preloader").delay(500).fadeOut("slow");
