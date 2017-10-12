@@ -80,16 +80,17 @@ function myLoop() {
 	setInterval(loopx, timeout);
 }
 
-$(function () {
+// $(function() {
+//
+// 	myLoop();
+// 	$.scrollify({
+// 		section:".sections",
+// 		interstitialSection:".sectionsFull",
+// 		setHeights: false
+// 	});
+// 	$.scrollify.disable();
+// });
 
-	myLoop();
-	$.scrollify({
-		section: ".sections",
-		interstitialSection: ".sectionsFull",
-		setHeights: false
-	});
-	$.scrollify.disable();
-});
 
 $("#myonoffswitch3").click(function () {
 	if ($('#myonoffswitch3').is(":checked")) {

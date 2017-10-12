@@ -108,16 +108,16 @@ function myLoop()
 
 
 
-$(function() {
-
-	myLoop();
-	$.scrollify({
-		section:".sections",
-		interstitialSection:".sectionsFull",
-		setHeights: false
-	});
-	$.scrollify.disable();
-});
+// $(function() {
+//
+// 	myLoop();
+// 	$.scrollify({
+// 		section:".sections",
+// 		interstitialSection:".sectionsFull",
+// 		setHeights: false
+// 	});
+// 	$.scrollify.disable();
+// });
 
 
 
