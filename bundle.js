@@ -4,6 +4,9 @@
  */
 $ = jQuery = require('jquery');
 
+window.jQuery = $;
+window.$ = $;
+
 /**
 Nprogress loading bar
 */

@@ -4,6 +4,8 @@
  $ = jQuery = require('jquery');
 
 
+ window.jQuery = $;
+ window.$ = $;
 
 
 /**
