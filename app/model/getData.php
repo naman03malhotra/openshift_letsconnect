@@ -38,7 +38,7 @@ class getData
 
 		//if(!isset($_SESSION['portAndIp']))
 			// $this->portAndIp = "127.13.163.2:3306";
-			$this->portAndIp = "172.30.209.133:3306";
+			$this->portAndIp = "mysql.letsconnect.svc";
 
 		//else
 		//	$this->portAndIp = $_SESSION['portAndIp'];
